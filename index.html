@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kickoff Clean ATL — Volunteer cleanups of MARTA stations ahead of FIFA 2026</title>
+  <meta name="description" content="A citizen-led, sponsor-supported program restoring Atlanta's MARTA stations before the 2026 World Cup. Every station, every visitor, every story." />
+  <meta name="theme-color" content="#1A4A9E" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kickoff Clean ATL" />
+  <meta property="og:description" content="Restoring Atlanta's MARTA stations before the 2026 World Cup. Volunteer-led. Sponsor-supported." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/logo-256.png" />
+</head>
+<body>
+
+  <!-- SVG filter for liquid-glass buttons. Referenced via backdrop-filter: url(#liquid-glass) -->
+  <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+    <defs>
+      <filter id="liquid-glass" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.05" numOctaves="1" seed="1" result="turbulence" />
+        <feGaussianBlur in="turbulence" stdDeviation="2" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="70" xChannelSelector="R" yChannelSelector="B" result="displaced" />
+        <feGaussianBlur in="displaced" stdDeviation="4" result="finalBlur" />
+        <feComposite in="finalBlur" in2="finalBlur" operator="over" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="Kickoff Clean ATL home">
+        <img src="images/logo-256.png" alt="Kickoff Clean ATL" class="brand-logo" />
+      </a>
+      <div class="nav-links">
+        <a href="#mission">The Mission</a>
+        <a href="#approach">Approach</a>
+        <a href="convener.html">Convener</a>
+        <a href="get-involved.html" class="nav-cta">Get Involved</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <!--
+    Image placeholders below are stock Unsplash photos of transit / urban scenes.
+    Replace each <img src="..."> with a real MARTA station photo after Session 1
+    (Saturday, May 23). Keep the data-static-rotation attribute on each card.
+  -->
+  <header class="hero">
+    <!-- ============ HERO VECTOR BACKDROP ============ -->
+    <div class="hero-vectors" aria-hidden="true">
+      <svg class="hero-vectors-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="kca-route-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#FFC42E" stop-opacity="0"/>
+            <stop offset="35%"  stop-color="#FFC42E" stop-opacity="0.75"/>
+            <stop offset="65%"  stop-color="#FFC42E" stop-opacity="0.75"/>
+            <stop offset="100%" stop-color="#FFC42E" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="kca-route-cream" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#FAF7F2" stop-opacity="0"/>
+            <stop offset="50%"  stop-color="#FAF7F2" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#FAF7F2" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="kca-contour" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stop-color="#FAF7F2" stop-opacity="0"/>
+            <stop offset="50%"  stop-color="#FAF7F2" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#FAF7F2" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="kca-node-glow">
+            <stop offset="0%"   stop-color="#FFC42E" stop-opacity="0.9"/>
+            <stop offset="40%"  stop-color="#FFC42E" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#FFC42E" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="kca-spotlight" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#FFC42E" stop-opacity="0.12"/>
+            <stop offset="60%"  stop-color="#FFC42E" stop-opacity="0.03"/>
+            <stop offset="100%" stop-color="#FFC42E" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="kca-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="6"/>
+            <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Soft drifting spotlight -->
+        <g class="hv-spot">
+          <circle cx="280" cy="220" r="360" fill="url(#kca-spotlight)"/>
+          <circle cx="1320" cy="680" r="420" fill="url(#kca-spotlight)"/>
+        </g>
+
+        <!-- Layer 1 — Topographic contours -->
+        <g class="hv-contours" fill="none" stroke="url(#kca-contour)" stroke-width="1">
+          <path d="M -80,250 C 300,228 520,318 820,290 S 1240,348 1700,310"/>
+          <path d="M -80,310 C 280,288 520,372 820,344 S 1240,398 1700,360"/>
+          <path d="M -80,372 C 280,358 520,432 820,402 S 1240,452 1700,418"/>
+          <path d="M -80,440 C 300,428 540,498 820,470 S 1240,520 1700,488"/>
+          <path d="M -80,510 C 280,500 540,562 820,540 S 1240,592 1700,560"/>
+          <path d="M -80,580 C 280,572 540,628 820,610 S 1240,662 1700,628"/>
+          <path d="M -80,650 C 300,646 540,700 820,684 S 1240,738 1700,704"/>
+        </g>
+
+        <!-- Layer 2 — Major route lines -->
+        <g class="hv-routes" fill="none" stroke-linecap="round">
+          <path class="hv-route-1" d="M -120,180 C 300,148 540,420 820,380 S 1260,498 1720,432"
+                stroke="url(#kca-route-gold)" stroke-width="2.5"/>
+          <path class="hv-route-2" d="M -120,560 C 320,584 540,458 820,498 S 1260,612 1720,540"
+                stroke="url(#kca-route-cream)" stroke-width="1.8"/>
+          <path class="hv-route-3" d="M -120,70 C 420,92 720,38 1100,82 S 1500,104 1720,62"
+                stroke="url(#kca-route-gold)" stroke-width="0.9" opacity="0.55"/>
+          <path class="hv-route-4" d="M -120,780 C 420,798 720,748 1100,790 S 1500,808 1720,770"
+                stroke="url(#kca-route-cream)" stroke-width="1.1" opacity="0.6"/>
+        </g>
+
+        <!-- Layer 3 — Station nodes -->
+        <g class="hv-nodes">
+          <g class="hv-node hv-node-1">
+            <circle cx="322" cy="194" r="36" fill="url(#kca-node-glow)" filter="url(#kca-glow)"/>
+            <circle cx="322" cy="194" r="3.2" fill="#FFC42E"/>
+          </g>
+          <g class="hv-node hv-node-2">
+            <circle cx="820" cy="380" r="48" fill="url(#kca-node-glow)" filter="url(#kca-glow)"/>
+            <circle cx="820" cy="380" r="3.8" fill="#FFC42E"/>
+          </g>
+          <g class="hv-node hv-node-3">
+            <circle cx="1284" cy="492" r="40" fill="url(#kca-node-glow)" filter="url(#kca-glow)"/>
+            <circle cx="1284" cy="492" r="3.2" fill="#FFC42E"/>
+          </g>
+          <circle cx="600" cy="556" r="2.4" fill="#FAF7F2" opacity="0.6"/>
+          <circle cx="1010" cy="514" r="2.4" fill="#FAF7F2" opacity="0.6"/>
+          <circle cx="180" cy="78"   r="2"   fill="#FAF7F2" opacity="0.55"/>
+          <circle cx="1420" cy="92"  r="2"   fill="#FAF7F2" opacity="0.55"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero-carousel-wrap" aria-hidden="true">
+      <div class="carousel-stage" id="carousel-stage">
+        <div class="carousel-card" data-static-rotation="-15">
+          <img src="images/station-arts-center.jpg" alt="Arts Center Station — mural and stepped seating" loading="eager" />
+          <span class="carousel-label">Arts Center</span>
+        </div>
+        <div class="carousel-card" data-static-rotation="-8">
+          <img src="images/station-midtown.jpg" alt="Midtown Station entrance" loading="eager" />
+          <span class="carousel-label">Midtown</span>
+        </div>
+        <div class="carousel-card" data-static-rotation="5">
+          <img src="images/station-five-points.jpg" alt="Five Points Station — arched roof entrance" loading="eager" />
+          <span class="carousel-label">Five Points</span>
+        </div>
+        <div class="carousel-card" data-static-rotation="12">
+          <img src="images/station-peachtree-center.jpg" alt="Peachtree Center Station — MARTA totem signage" loading="eager" />
+          <span class="carousel-label">Peachtree Center</span>
+        </div>
+        <div class="carousel-card" data-static-rotation="-12">
+          <img src="images/station-north-avenue.jpg" alt="North Avenue Station — entrance with train arrival display" loading="eager" />
+          <span class="carousel-label">North Avenue</span>
+        </div>
+        <div class="carousel-card" data-static-rotation="8">
+          <img src="images/station-civic-center.jpg" alt="Civic Center Station — plaza entrance" loading="eager" />
+          <span class="carousel-label">Civic Center</span>
+        </div>
+        <div class="carousel-card" data-static-rotation="-6">
+          <img src="images/station-gwcc.jpg" alt="GWCC / CNN Center Station entrance" loading="eager" />
+          <span class="carousel-label">GWCC / CNN Center</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container hero-inner">
+      <span class="eyebrow">Atlanta × FIFA 2026</span>
+      <h1>Every Station<br />Every Visitor<br />Every Story</h1>
+      <p class="lede">
+        In weeks, hundreds of millions of eyes will watch Atlanta host the FIFA 2026 World Cup.
+        Kickoff Clean ATL is a citizen-led, sponsor-supported initiative restoring our MARTA stations —
+        one weekend at a time — so the city we know greets the world the way it deserves.
+      </p>
+      <div class="hero-actions">
+        <a href="get-involved.html#volunteer" class="btn-liquid">
+          <span>Join Saturday's cleanup</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="get-involved.html#donate" class="btn-liquid is-accent">
+          <span>Support the work</span>
+        </a>
+      </div>
+      <div class="next-session">
+        <span class="pulse" aria-hidden="true"></span>
+        <span>Next session: <strong>Arts Center Station · Saturday, May 23 · 8:00 AM</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ THE MOMENT ============ -->
+  <section class="moment" id="mission">
+    <div class="container">
+      <div class="moment-grid">
+        <div class="moment-text">
+          <div class="section-eyebrow"><span class="eyebrow">The Mission</span></div>
+          <h2>Atlanta is hosting the world. Our stations should look like it.</h2>
+          <p>
+            On a walk through Midtown and downtown this week, the case for this work made itself.
+            Floors that have not been washed in years. The lingering smell of urine on platforms.
+            Wooden barriers across station entrances with no signs to tell anyone what's happening behind them.
+          </p>
+          <p>
+            None of this is a complaint. It is an invitation.
+            Atlanta's transit system carries the first impression every visitor will form of this city.
+            We can fix what's in front of us, before kickoff — together.
+          </p>
+        </div>
+
+        <aside class="moment-card">
+          <h4>Why this, why now</h4>
+          <p>The World Cup arrives in weeks. Visitors from every continent will board a MARTA train
+             between the airport, downtown, and Mercedes-Benz Stadium. The window to act is now.</p>
+          <div class="moment-stats">
+            <div class="stat">
+              <span class="stat-num">6</span>
+              <span class="stat-lbl">weeks of operating runway</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">12</span>
+              <span class="stat-lbl">priority stations identified</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">$0</span>
+              <span class="stat-lbl">cost to Atlanta taxpayers</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">1</span>
+              <span class="stat-lbl">city, one welcome</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ APPROACH ============ -->
+  <section class="approach" id="approach">
+    <div class="container">
+      <div class="section-eyebrow"><span class="eyebrow">Our Approach</span></div>
+      <h2>Small, documented, repeatable.</h2>
+      <p class="section-lede">
+        We are not waiting for a perfect plan, a perfect coalition, or a perfect budget.
+        We start at one station, with the people who show up, and we let the work speak.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <span class="card-num">01 / Show Up</span>
+          <h3>Volunteer-led cleanups</h3>
+          <p>Weekend sessions at priority MARTA stations along the visitor corridor.
+             Trained volunteers, supervised crews, real cleaning supplies, full safety briefings.</p>
+        </article>
+
+        <article class="card">
+          <span class="card-num">02 / Document</span>
+          <h3>Before & after, every time</h3>
+          <p>Every session is photographed and recorded. The artifact is the evidence —
+             a public record of what one weekend of citizen effort can do.</p>
+        </article>
+
+        <article class="card">
+          <span class="card-num">03 / Scale</span>
+          <h3>Build a template</h3>
+          <p>Each session sharpens the playbook. As partners come in — MARTA, the City,
+             corporate Atlanta — we ramp from one station to many. With or without them, the work continues.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATIONS ============ -->
+  <section class="stations" id="stations">
+    <div class="container">
+      <div class="section-eyebrow"><span class="eyebrow">Priority Stations</span></div>
+      <h2>Where the world will arrive.</h2>
+      <p class="section-lede">
+        Stations along the airport, downtown, Midtown, and stadium corridors carry the heaviest
+        visitor footprint. We begin at Arts Center — the pilot — and expand from there.
+      </p>
+
+      <div class="station-list">
+        <div class="station pilot" data-line="red">
+          <span class="station-dot"></span>
+          <div>
+            <div class="station-name">Arts Center</div>
+            <div class="station-meta">Red / Gold · Midtown</div>
+          </div>
+          <span class="station-tag">Pilot</span>
+        </div>
+        <div class="station" data-line="red"><span class="station-dot"></span><div><div class="station-name">Midtown</div><div class="station-meta">Red / Gold</div></div></div>
+        <div class="station" data-line="red"><span class="station-dot"></span><div><div class="station-name">North Avenue</div><div class="station-meta">Red / Gold</div></div></div>
+        <div class="station" data-line="red"><span class="station-dot"></span><div><div class="station-name">Civic Center</div><div class="station-meta">Red / Gold</div></div></div>
+        <div class="station" data-line="red"><span class="station-dot"></span><div><div class="station-name">Peachtree Center</div><div class="station-meta">Red / Gold</div></div></div>
+        <div class="station" data-line="red"><span class="station-dot"></span><div><div class="station-name">Five Points</div><div class="station-meta">All lines</div></div></div>
+        <div class="station"><span class="station-dot"></span><div><div class="station-name">GWCC / CNN Center</div><div class="station-meta">Blue / Green</div></div></div>
+        <div class="station"><span class="station-dot"></span><div><div class="station-name">Garnett</div><div class="station-meta">Red / Gold</div></div></div>
+        <div class="station" data-line="gold"><span class="station-dot"></span><div><div class="station-name">Lindbergh Center</div><div class="station-meta">Transfer</div></div></div>
+        <div class="station" data-line="red"><span class="station-dot"></span><div><div class="station-name">Airport</div><div class="station-meta">Red / Gold</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GOALS ============ -->
+  <section class="goals">
+    <div class="container">
+      <div class="section-eyebrow" style="color: var(--gold);"><span class="eyebrow">Our Goals · Six Weeks</span></div>
+      <h2>What we are trying to deliver.</h2>
+      <p class="section-lede" style="color: rgba(250, 247, 242, 0.75);">
+        Honest targets we can be measured against. Numbers move up as commitments come in.
+      </p>
+
+      <div class="goals-grid">
+        <div class="goal">
+          <div class="goal-num">6–12</div>
+          <div class="goal-lbl">Priority MARTA stations measurably improved by tournament kickoff</div>
+        </div>
+        <div class="goal">
+          <div class="goal-num">500+</div>
+          <div class="goal-lbl">Atlanta residents mobilized as trained, supervised volunteers</div>
+        </div>
+        <div class="goal">
+          <div class="goal-num">12</div>
+          <div class="goal-lbl">Consecutive weekend sessions documented and made public</div>
+        </div>
+        <div class="goal">
+          <div class="goal-num">1</div>
+          <div class="goal-lbl">Open playbook the city can re-deploy for any future host moment</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="cta-band">
+    <div class="container">
+      <div class="cta-card">
+        <div>
+          <div class="section-eyebrow"><span class="eyebrow">Be Part Of It</span></div>
+          <h2>Three hours on a Saturday morning.</h2>
+          <p>That's the ask. Bring your hands. We bring everything else — gloves, supplies, briefing, breakfast.
+             You leave with a station that's measurably better, and a story you helped write.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="get-involved.html#volunteer" class="btn btn-dark btn-arrow">Volunteer</a>
+          <a href="get-involved.html#donate" class="btn btn-ghost">Donate</a>
+          <a href="get-involved.html#sponsor" class="btn btn-ghost">Become a sponsor</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo-256.png" alt="Kickoff Clean ATL" class="brand-logo" />
+          <p>A citizen-led, sponsor-supported initiative restoring MARTA stations before
+             the 2026 FIFA World Cup. Independent of MARTA and the City of Atlanta;
+             operating in coordination with both.</p>
+        </div>
+        <div>
+          <h4>Initiative</h4>
+          <a href="#mission">The Mission</a>
+          <a href="#approach">Our Approach</a>
+          <a href="#stations">Stations</a>
+          <a href="convener.html">The Convener</a>
+          <a href="get-involved.html">Get Involved</a>
+        </div>
+        <div>
+          <h4>Take Part</h4>
+          <a href="get-involved.html#volunteer">Volunteer</a>
+          <a href="get-involved.html#donate">Donate</a>
+          <a href="get-involved.html#sponsor">Sponsor</a>
+          <a href="get-involved.html#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:hello@kickoffcleanatl.com">hello@kickoffcleanatl.com</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+      <div class="footer-bot">
+        <span>© 2026 Kickoff Clean ATL. A citizen initiative.</span>
+        <span>Atlanta, Georgia · Pre-FIFA 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="carousel.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Involved — Kickoff Clean ATL</title>
+  <meta name="description" content="Volunteer, donate, or sponsor the Kickoff Clean ATL initiative. Three hours on a Saturday morning helps Atlanta greet the world." />
+  <meta name="theme-color" content="#1A4A9E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/logo-256.png" />
+</head>
+<body>
+
+  <!-- SVG filter for liquid-glass buttons. Referenced via backdrop-filter: url(#liquid-glass) -->
+  <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+    <defs>
+      <filter id="liquid-glass" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.05" numOctaves="1" seed="1" result="turbulence" />
+        <feGaussianBlur in="turbulence" stdDeviation="2" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="70" xChannelSelector="R" yChannelSelector="B" result="displaced" />
+        <feGaussianBlur in="displaced" stdDeviation="4" result="finalBlur" />
+        <feComposite in="finalBlur" in2="finalBlur" operator="over" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="Kickoff Clean ATL home">
+        <img src="images/logo-256.png" alt="Kickoff Clean ATL" class="brand-logo" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html#mission">The Mission</a>
+        <a href="index.html#approach">Approach</a>
+        <a href="convener.html">Convener</a>
+        <a href="get-involved.html" class="nav-cta">Get Involved</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ PAGE HERO ============ -->
+  <header class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Take Part</span>
+      <h1>Three ways to help<br />Atlanta welcome the world.</h1>
+      <p>Whether you have three hours, fifty dollars, or a corporate platform — there is a place for you here.
+         Pick a path. We will meet you there.</p>
+    </div>
+  </header>
+
+  <!-- ============ PATHS ============ -->
+  <section style="padding-top: 0; padding-bottom: clamp(3rem, 6vw, 5rem);">
+    <div class="container">
+      <div class="paths">
+        <a href="#volunteer" class="path-card featured">
+          <div class="icon">★</div>
+          <h3>Volunteer</h3>
+          <p>Show up at a station for three hours on a Saturday morning. Gloves, supplies, and a safety briefing provided.</p>
+          <span class="btn btn-primary btn-arrow" style="align-self: flex-start;">Sign up</span>
+        </a>
+
+        <a href="#donate" class="path-card">
+          <div class="icon">$</div>
+          <h3>Donate</h3>
+          <p>Cover supplies, PPE, and event insurance for the next session. Every $40 equips one volunteer for a full Saturday.</p>
+          <span class="btn btn-dark btn-arrow" style="align-self: flex-start;">Contribute</span>
+        </a>
+
+        <a href="#sponsor" class="path-card">
+          <div class="icon">◆</div>
+          <h3>Sponsor</h3>
+          <p>Corporate, in-kind, or community partnership. Become part of the visible coalition that helps Atlanta show up.</p>
+          <span class="btn btn-ghost btn-arrow" style="align-self: flex-start;">Partner with us</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VOLUNTEER DETAIL ============ -->
+  <section class="detail" id="volunteer">
+    <div class="container">
+      <div class="section-eyebrow"><span class="eyebrow">Volunteer</span></div>
+      <h2>What a Saturday with us looks like.</h2>
+      <p class="section-lede">
+        One station, four hours, a small crew. You are supervised, equipped, and never asked to do anything unsafe.
+        Most volunteers go home with a story and a few good photos.
+      </p>
+
+      <div class="detail-grid">
+        <ol class="detail-list">
+          <li>
+            <span class="dl-num">8:00</span>
+            <div class="dl-content">
+              <strong>Arrival & check-in.</strong> Sign the waiver, pick up a hi-vis vest, gloves,
+              safety glasses, and a name tag. Meet your small crew of four to six.
+            </div>
+          </li>
+          <li>
+            <span class="dl-num">8:15</span>
+            <div class="dl-content">
+              <strong>Safety briefing.</strong> Five minutes on what is in scope, what is not,
+              and what to do if anything goes wrong. Hydration plan reviewed.
+            </div>
+          </li>
+          <li>
+            <span class="dl-num">8:30</span>
+            <div class="dl-content">
+              <strong>Before photos.</strong> Every area is documented before any work begins.
+              You become part of the record.
+            </div>
+          </li>
+          <li>
+            <span class="dl-num">8:45</span>
+            <div class="dl-content">
+              <strong>Crew dispatch.</strong> Each crew takes one zone. Sweeping, scrubbing,
+              wiping, trash collection. A crew lead checks in every twenty minutes.
+            </div>
+          </li>
+          <li>
+            <span class="dl-num">11:30</span>
+            <div class="dl-content">
+              <strong>Wrap.</strong> After photos, trash to designated bins, supplies packed.
+              Group photo.
+            </div>
+          </li>
+          <li>
+            <span class="dl-num">12:00</span>
+            <div class="dl-content">
+              <strong>Breakfast on us.</strong> Pizza, water, and a proper thank-you.
+              You're home by 1:00.
+            </div>
+          </li>
+        </ol>
+
+        <aside class="moment-card">
+          <h4>What to wear & bring</h4>
+          <p style="color: var(--ink-soft);">
+            Comfortable closed-toe shoes you don't mind getting dirty. Pants over shorts.
+            A water bottle. Sunscreen if the forecast calls for it.
+          </p>
+          <p style="color: var(--ink-soft);">
+            We provide: hi-vis vest, gloves, safety glasses, dust mask, cleaning supplies,
+            first-aid, water station, food.
+          </p>
+          <p style="color: var(--ink-soft); margin-bottom: 0;">
+            <strong>Age:</strong> 16+ welcome. Minors require a parent or guardian on site
+            and an additional waiver signed in advance.
+          </p>
+
+          <div class="note">
+            Sign-ups are managed via a short form. You'll receive a confirmation email
+            with the meeting point, the waiver to read in advance, and a Saturday-morning text.
+          </div>
+
+          <a href="#" class="btn btn-primary btn-arrow" style="margin-top: 1.5rem;">
+            Sign up for Saturday
+          </a>
+          <!-- Replace href with your Google Form / Typeform / Hands On Atlanta listing URL -->
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DONATE DETAIL ============ -->
+  <section class="detail" id="donate">
+    <div class="container">
+      <div class="section-eyebrow"><span class="eyebrow">Donate</span></div>
+      <h2>Where the dollars go.</h2>
+      <p class="section-lede">
+        Kickoff Clean ATL is self-funded for its pilot session and powered by community contributions from there.
+        No founder takes a salary. Every dollar buys supplies, insurance, or a meal for a volunteer.
+      </p>
+
+      <div class="detail-grid">
+        <div>
+          <ol class="detail-list">
+            <li>
+              <span class="dl-num">$40</span>
+              <div class="dl-content"><strong>Equip one volunteer</strong> for a full Saturday — PPE, gloves, hi-vis vest, water, breakfast.</div>
+            </li>
+            <li>
+              <span class="dl-num">$400</span>
+              <div class="dl-content"><strong>One day of event liability insurance</strong> with MARTA listed as additional insured. Non-negotiable, every session.</div>
+            </li>
+            <li>
+              <span class="dl-num">$900</span>
+              <div class="dl-content"><strong>Underwrite an entire weekend session</strong> at a new station — supplies, insurance, food, and printed waivers.</div>
+            </li>
+            <li>
+              <span class="dl-num">$5,000</span>
+              <div class="dl-content"><strong>Anchor the next three weekends.</strong> Three stations. Two hundred volunteer-hours. Documented from start to finish.</div>
+            </li>
+          </ol>
+        </div>
+
+        <aside class="moment-card">
+          <h4>How to give</h4>
+          <p style="color: var(--ink-soft);">
+            We are launching a GoFundMe immediately after our pilot session at Arts Center.
+            Larger gifts and corporate contributions flow through a fiscal sponsor — we'll match
+            you to the right pathway.
+          </p>
+          <a href="#" class="btn btn-dark btn-arrow" style="margin-top: 0.5rem;">
+            Give via GoFundMe
+          </a>
+          <!-- Replace href with your live GoFundMe URL once Session 1 is documented -->
+          <div class="note">
+            For gifts above $1,000 or any corporate contribution, please email
+            <strong>hello@kickoffcleanatl.com</strong> so we can route the gift through our fiscal sponsor
+            and ensure tax-deductibility.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPONSOR TIERS ============ -->
+  <section class="tiers" id="sponsor">
+    <div class="container">
+      <div class="section-eyebrow"><span class="eyebrow">Sponsor</span></div>
+      <h2>Stand visibly with Atlanta.</h2>
+      <p class="section-lede">
+        Kickoff Clean ATL is built to make corporate citizenship plainly visible at the most-watched
+        moment in this city's calendar. Choose a tier, or talk to us about an in-kind partnership.
+      </p>
+
+      <div class="tier-grid">
+        <div class="tier">
+          <div class="tier-name">Community</div>
+          <div class="tier-band">$1,000+</div>
+          <ul class="tier-list">
+            <li>Logo on website and recap reels</li>
+            <li>Named in session debriefs</li>
+            <li>Public thank-you across channels</li>
+          </ul>
+        </div>
+        <div class="tier" style="border-color: var(--gold); background: linear-gradient(135deg, var(--cream) 0%, #FBF6EA 100%);">
+          <div class="tier-name">Anchor</div>
+          <div class="tier-band">$10,000+</div>
+          <ul class="tier-list">
+            <li>Co-branded session at a chosen station</li>
+            <li>Logo placement on volunteer materials</li>
+            <li>Named in every press communication</li>
+            <li>Executive walk-through and photo opportunity</li>
+          </ul>
+        </div>
+        <div class="tier">
+          <div class="tier-name">Title</div>
+          <div class="tier-band">$50,000+</div>
+          <ul class="tier-list">
+            <li>Program co-naming rights</li>
+            <li>Top placement on all materials and the after-action report</li>
+            <li>Coordinated press moment with city and MARTA partners</li>
+            <li>Custom recognition wall at every station</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top: 2.5rem; color: var(--ink-soft);">
+        Considering an in-kind contribution — tools, PPE, signage, meals, transportation,
+        marketing amplification? We're especially interested in talking with you.
+      </p>
+      <a href="mailto:hello@kickoffcleanatl.com?subject=Welcome%20Atlanta%20Sponsorship" class="btn btn-dark btn-arrow">
+        Request the sponsor prospectus
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-eyebrow"><span class="eyebrow">Frequently Asked</span></div>
+      <h2>Honest answers.</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Is this an official MARTA or City of Atlanta program?</div>
+        <p class="faq-a">No. Kickoff Clean ATL is an independent citizen initiative. We coordinate with
+           MARTA and the City and operate only where they grant permission, but we are not employees
+           or contractors of either body.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What if MARTA doesn't approve a station?</div>
+        <p class="faq-a">We focus on the public sidewalks and rights-of-way immediately adjacent to the
+           station instead. Either way, the work happens, and visible improvement reaches the visitor corridor.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Is volunteering safe?</div>
+        <p class="faq-a">Every session carries event liability insurance with MARTA listed as
+           additional insured. Every volunteer wears PPE. A safety briefing is mandatory. A first-aid
+           kit is on-site. MARTA Police is alerted to every session in advance.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Are donations tax-deductible?</div>
+        <p class="faq-a">Gifts above $1,000 are routed through a Georgia-based fiscal sponsor with
+           501(c)(3) status, making them deductible. Smaller GoFundMe contributions are personal gifts.
+           Email us if you need a tax receipt for any amount and we'll arrange it.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Who is behind this?</div>
+        <p class="faq-a">Kickoff Clean ATL was started by Ernest Timothy, an Atlanta resident who took an
+           evening walk through Midtown, didn't like what he saw, and decided to do something about it
+           before the World Cup arrives. He is supported by a growing roster of volunteers, donors,
+           and community partners.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Will this continue after the World Cup?</div>
+        <p class="faq-a">If the work proves itself and the city wants it, yes. The six-week sprint
+           is intentionally bounded so we can deliver on what we promise. The playbook we publish
+           afterward is designed to be re-deployed for any future host moment, by anyone.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">I want to help but can't do a Saturday — what else can I do?</div>
+        <p class="faq-a">Share our work on social. Tell a Midtown restaurant about us. Introduce us
+           to a colleague at one of the corporate names you'd expect to see on this list. Forward our
+           page to a friend who might volunteer. The coalition grows one introduction at a time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="cta-band">
+    <div class="container">
+      <div class="cta-card">
+        <div>
+          <div class="section-eyebrow"><span class="eyebrow">Still Reading?</span></div>
+          <h2>Then you're already one of us.</h2>
+          <p>Pick one thing. Do it today. Send a friend. Sign up. Send $40. The first session at
+             Arts Center is this Saturday — the second begins recruiting the moment we wrap.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="#volunteer" class="btn btn-primary btn-arrow">Sign up to volunteer</a>
+          <a href="#donate" class="btn btn-dark btn-arrow">Donate $40</a>
+          <a href="mailto:hello@kickoffcleanatl.com" class="btn btn-ghost">Email us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo-256.png" alt="Kickoff Clean ATL" class="brand-logo" />
+          <p>A citizen-led, sponsor-supported initiative restoring MARTA stations before
+             the 2026 FIFA World Cup. Independent of MARTA and the City of Atlanta;
+             operating in coordination with both.</p>
+        </div>
+        <div>
+          <h4>Initiative</h4>
+          <a href="index.html#mission">The Mission</a>
+          <a href="index.html#approach">Our Approach</a>
+          <a href="index.html#stations">Stations</a>
+          <a href="convener.html">The Convener</a>
+          <a href="get-involved.html">Get Involved</a>
+        </div>
+        <div>
+          <h4>Take Part</h4>
+          <a href="#volunteer">Volunteer</a>
+          <a href="#donate">Donate</a>
+          <a href="#sponsor">Sponsor</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:hello@kickoffcleanatl.com">hello@kickoffcleanatl.com</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+      <div class="footer-bot">
+        <span>© 2026 Kickoff Clean ATL. A citizen initiative.</span>
+        <span>Atlanta, Georgia · Pre-FIFA 2026</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
