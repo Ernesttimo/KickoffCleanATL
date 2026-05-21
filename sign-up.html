@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up for Saturday — Kickoff Clean ATL</title>
+  <meta name="description" content="Volunteer registration for the Kickoff Clean ATL Saturday session at Arts Center Station." />
+  <meta name="theme-color" content="#1A4A9E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=202605210000" />
+  <link rel="stylesheet" href="sign-up.css?v=202605211017" />
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/logo-256.png" />
+</head>
+<body>
+
+  <!-- SVG filter for liquid-glass buttons -->
+  <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+    <defs>
+      <filter id="liquid-glass" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.05" numOctaves="1" seed="1" result="turbulence" />
+        <feGaussianBlur in="turbulence" stdDeviation="2" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="70" xChannelSelector="R" yChannelSelector="B" result="displaced" />
+        <feGaussianBlur in="displaced" stdDeviation="4" result="finalBlur" />
+        <feComposite in="finalBlur" in2="finalBlur" operator="over" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="Kickoff Clean ATL home">
+        <img src="images/logo-256.png" alt="Kickoff Clean ATL" class="brand-logo" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html#mission">The Mission</a>
+        <a href="index.html#approach">Approach</a>
+        <a href="convener.html">Convener</a>
+        <a href="get-involved.html" class="nav-cta">Get Involved</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ PAGE HEADER ============ -->
+  <header class="su-hero">
+    <div class="container">
+      <span class="eyebrow">Volunteer Registration</span>
+      <h1>Join Saturday's Cleanup.</h1>
+      <p class="su-lede">
+        Three hours, one station, real impact. Reserve your spot below and we'll send the meeting
+        point, the waiver, and a Saturday-morning text the day before.
+      </p>
+      <div class="su-meta">
+        <div><span>Session</span><strong>Arts Center Station</strong></div>
+        <div><span>Date</span><strong>Saturday, May 23, 2026</strong></div>
+        <div><span>Time</span><strong>8:00 AM – 12:00 PM</strong></div>
+        <div><span>Cost</span><strong>Free · Breakfast included</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ FORM + SIDEBAR ============ -->
+  <section class="su-section">
+    <div class="container su-grid">
+
+      <!-- LEFT — FORM -->
+      <div class="su-form-wrap">
+        <!--
+          FORM SETUP — one-time:
+          1. Go to https://formspree.io and sign up (free)
+          2. Click "+ New Form", name it "Kickoff Clean ATL Sign-Ups"
+          3. Copy the form endpoint (looks like https://formspree.io/f/xqaagbnz)
+          4. Replace the action="" URL below with your endpoint
+          5. Submit a test entry — Formspree will email you to verify, click the link
+          6. From then on, every submission emails Ernest at the inbox you configured
+          Alternative: replace the entire form with a Google Forms / Tally embed.
+        -->
+        <form
+          class="su-form"
+          method="POST"
+          action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID"
+          novalidate
+        >
+          <input type="hidden" name="_subject" value="New Kickoff Clean ATL volunteer sign-up" />
+          <input type="hidden" name="_session" value="Arts Center · Saturday May 23, 2026 · 8 AM" />
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <fieldset>
+            <legend>Your details</legend>
+
+            <div class="su-field">
+              <label for="fullName">Full name <span class="req">*</span></label>
+              <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="Ada Lovelace" />
+            </div>
+
+            <div class="su-row">
+              <div class="su-field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email" placeholder="ada@example.com" />
+              </div>
+              <div class="su-field">
+                <label for="phone">Mobile phone <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(404) 555-0100" />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Session</legend>
+            <div class="su-radio-group">
+              <label class="su-radio">
+                <input type="radio" name="session" value="2026-05-23-arts-center" checked />
+                <span class="su-radio-card">
+                  <strong>Arts Center · May 23</strong>
+                  <small>8:00 AM – 12:00 PM</small>
+                </span>
+              </label>
+              <label class="su-radio">
+                <input type="radio" name="session" value="future-session" />
+                <span class="su-radio-card">
+                  <strong>Notify me of future sessions</strong>
+                  <small>Get the email when the next one opens</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Emergency contact</legend>
+            <div class="su-row">
+              <div class="su-field">
+                <label for="emergencyName">Contact name <span class="req">*</span></label>
+                <input type="text" id="emergencyName" name="emergencyName" required placeholder="Family member or close friend" />
+              </div>
+              <div class="su-field">
+                <label for="emergencyPhone">Contact phone <span class="req">*</span></label>
+                <input type="tel" id="emergencyPhone" name="emergencyPhone" required placeholder="(404) 555-0100" />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Logistics</legend>
+            <div class="su-row">
+              <div class="su-field">
+                <label for="shirtSize">T-shirt size</label>
+                <select id="shirtSize" name="shirtSize">
+                  <option value="">No preference</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                </select>
+              </div>
+              <div class="su-field">
+                <label for="age">Age <span class="req">*</span></label>
+                <select id="age" name="age" required>
+                  <option value="">Select…</option>
+                  <option value="16-17">16–17 (parent/guardian on site)</option>
+                  <option value="18+">18+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="su-field">
+              <label for="notes">Anything we should know? <span class="su-optional">optional</span></label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Mobility needs, dietary, group size, prior experience…"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Agreements</legend>
+            <label class="su-check">
+              <input type="checkbox" name="waiver" value="agreed" required />
+              <span>I have read and agree to the volunteer waiver and release of liability. <span class="req">*</span></span>
+            </label>
+            <label class="su-check">
+              <input type="checkbox" name="photoRelease" value="agreed" />
+              <span>I'm OK being photographed during the session for project documentation and social posts.</span>
+            </label>
+            <label class="su-check">
+              <input type="checkbox" name="updates" value="yes" checked />
+              <span>Send me email updates about Kickoff Clean ATL sessions and milestones.</span>
+            </label>
+          </fieldset>
+
+          <div class="su-submit-row">
+            <button type="submit" class="btn-liquid">
+              <span>Reserve my spot</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="su-fallback">
+              Form not loading?
+              <a href="mailto:hello@kickoffcleanatl.com?subject=Saturday%20cleanup%20sign-up&body=Hi%20—%20I'd%20like%20to%20join%20the%20Arts%20Center%20cleanup%20on%20Saturday%20May%2023.%0A%0AName:%0AEmail:%0APhone:%0AEmergency%20contact%20(name%20%26%20phone):%0AT-shirt%20size:%0AAge%20bracket%20(16-17%20or%2018%2B):">
+                Email Ernest directly
+              </a>.
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT — INFO -->
+      <aside class="su-aside">
+        <div class="su-aside-card">
+          <h3>What to expect</h3>
+          <ol class="su-timeline">
+            <li><strong>8:00</strong> <span>Check-in, waiver, PPE</span></li>
+            <li><strong>8:15</strong> <span>Safety briefing</span></li>
+            <li><strong>8:30</strong> <span>Before photos &amp; crew dispatch</span></li>
+            <li><strong>8:45</strong> <span>Three hours of cleaning, breaks every 45 min</span></li>
+            <li><strong>11:30</strong> <span>After photos, wrap, group shot</span></li>
+            <li><strong>12:00</strong> <span>Breakfast on us — home by 1:00</span></li>
+          </ol>
+        </div>
+
+        <div class="su-aside-card">
+          <h3>What to wear &amp; bring</h3>
+          <ul class="su-list">
+            <li>Closed-toe shoes you don't mind getting dirty</li>
+            <li>Pants over shorts</li>
+            <li>A water bottle</li>
+            <li>Sunscreen if the forecast calls for it</li>
+          </ul>
+          <p class="su-aside-foot">
+            <strong>We provide:</strong> hi-vis vest, gloves, safety glasses, dust mask,
+            cleaning supplies, first-aid, water station, food.
+          </p>
+        </div>
+
+        <div class="su-aside-card su-aside-card--quiet">
+          <h3>Questions?</h3>
+          <p>
+            <a href="mailto:hello@kickoffcleanatl.com?subject=Question%20about%20Saturday">hello@kickoffcleanatl.com</a><br />
+            We answer within 24 hours.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ POST-SUBMIT MESSAGE (shown if URL has ?success=1) ============ -->
+  <section class="su-success" id="success" hidden>
+    <div class="container">
+      <span class="eyebrow">You're in</span>
+      <h2>Thanks — we've got your details.</h2>
+      <p>
+        You'll get a confirmation email shortly with the meeting point, the volunteer waiver,
+        and what to expect on the morning. A short Saturday-morning text goes out the day before.
+        See you at Arts Center.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo-256.png" alt="Kickoff Clean ATL" class="brand-logo" />
+          <p>A citizen-led, sponsor-supported initiative restoring MARTA stations before
+             the 2026 FIFA World Cup. Independent of MARTA and the City of Atlanta;
+             operating in coordination with both.</p>
+        </div>
+        <div>
+          <h4>Initiative</h4>
+          <a href="index.html#mission">The Mission</a>
+          <a href="index.html#approach">Our Approach</a>
+          <a href="index.html#stations">Stations</a>
+          <a href="convener.html">The Convener</a>
+          <a href="get-involved.html">Get Involved</a>
+        </div>
+        <div>
+          <h4>Take Part</h4>
+          <a href="sign-up.html">Sign up</a>
+          <a href="get-involved.html#donate">Donate</a>
+          <a href="get-involved.html#sponsor">Sponsor</a>
+          <a href="get-involved.html#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:hello@kickoffcleanatl.com">hello@kickoffcleanatl.com</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+      <div class="footer-bot">
+        <span>© 2026 Kickoff Clean ATL. A citizen initiative.</span>
+        <span>Atlanta, Georgia · Pre-FIFA 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Show the success message if Formspree redirects back with ?success=1 -->
+  <script>
+    if (new URLSearchParams(window.location.search).get('success') === '1') {
+      var s = document.getElementById('success');
+      var form = document.querySelector('.su-form');
+      if (s) { s.hidden = false; s.scrollIntoView({ behavior: 'smooth' }); }
+      if (form) form.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
