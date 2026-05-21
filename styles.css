@@ -528,27 +528,31 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   margin-bottom: 2.5rem;
 }
 
-/* ---------- the moment ---------- */
+/* ---------- the mission (formerly .moment) — royal blue ---------- */
 .moment {
-  background: var(--cream);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  background: #1A4A9E;
+  color: var(--cream);
+  border-top: 1px solid rgba(255, 196, 46, 0.12);
+  border-bottom: 1px solid rgba(255, 196, 46, 0.12);
 }
+.moment h2 { color: var(--cream); }
 .moment-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
 }
-.moment-text p { font-size: 1.05rem; color: var(--ink-soft); }
+.moment-text p { font-size: 1.05rem; color: rgba(250, 247, 242, 0.80); }
 .moment-card {
-  background: var(--paper);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--radius);
   padding: 1.75rem;
-  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
-.moment-card h4 { color: var(--gold-dark); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.moment-card h4 { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.moment-card p { color: rgba(250, 247, 242, 0.80); }
 .moment-card p:last-child { margin-bottom: 0; }
 .moment-stats {
   display: grid;
@@ -558,18 +562,25 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 }
 .stat {
   padding: 1rem;
-  background: var(--cream-2);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
-.stat-num { font-size: 1.8rem; font-weight: 700; color: var(--ink); display: block; line-height: 1; }
-.stat-lbl { font-size: 0.82rem; color: var(--muted); margin-top: 0.35rem; display: block; }
+.stat-num { font-size: 1.8rem; font-weight: 700; color: var(--gold); display: block; line-height: 1; }
+.stat-lbl { font-size: 0.82rem; color: rgba(250, 247, 242, 0.60); margin-top: 0.35rem; display: block; }
 
 @media (max-width: 760px) {
   .moment-grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- approach / 3 cards ---------- */
-.approach { background: var(--paper); }
+/* ---------- approach — royal blue (slightly deeper) ---------- */
+.approach {
+  background: #0E2E68;
+  color: var(--cream);
+  border-top: 1px solid rgba(255, 196, 46, 0.12);
+}
+.approach h2 { color: var(--cream); }
+.approach .section-lede { color: rgba(250, 247, 242, 0.78); }
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -577,28 +588,39 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 }
 .card {
   padding: 1.75rem;
-  background: var(--cream);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--radius);
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  color: var(--cream);
 }
-.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 196, 46, 0.40);
+}
 .card-num {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--gold-dark);
+  color: var(--gold);
   letter-spacing: 0.16em;
   margin-bottom: 1rem;
   display: block;
 }
-.card h3 { margin-bottom: 0.6rem; }
-.card p { color: var(--ink-soft); margin: 0; }
+.card h3 { margin-bottom: 0.6rem; color: var(--cream); }
+.card p { color: rgba(250, 247, 242, 0.78); margin: 0; }
 
 @media (max-width: 880px) { .cards { grid-template-columns: 1fr; } }
 
-/* ---------- stations ---------- */
-.stations { background: var(--cream-2); }
+/* ---------- stations — royal blue ---------- */
+.stations {
+  background: #1A4A9E;
+  color: var(--cream);
+  border-top: 1px solid rgba(255, 196, 46, 0.12);
+}
+.stations h2 { color: var(--cream); }
+.stations .section-lede { color: rgba(250, 247, 242, 0.78); }
 .station-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -606,34 +628,39 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   margin-top: 2rem;
 }
 .station {
-  background: var(--paper);
+  background: rgba(255, 255, 255, 0.05);
   padding: 1.1rem 1.25rem;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  color: var(--cream);
 }
-.station:hover { border-color: var(--gold); transform: translateY(-2px); }
+.station:hover {
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateY(-2px);
+}
 .station-dot {
   width: 11px; height: 11px; border-radius: 50%;
-  background: var(--ink);
+  background: var(--cream);
   flex-shrink: 0;
 }
 .station[data-line="red"] .station-dot,
 .station[data-line="gold"] .station-dot { background: var(--gold); }
 .station.pilot {
-  border-color: var(--gold);
-  background: linear-gradient(135deg, var(--paper) 0%, #FBF6EA 100%);
+  border-color: rgba(255, 196, 46, 0.55);
+  background: linear-gradient(135deg, rgba(255, 196, 46, 0.18) 0%, rgba(255, 196, 46, 0.06) 100%);
 }
-.station-name { font-weight: 600; font-size: 0.98rem; }
-.station-meta { font-size: 0.78rem; color: var(--muted); }
+.station-name { font-weight: 600; font-size: 0.98rem; color: var(--cream); }
+.station-meta { font-size: 0.78rem; color: rgba(250, 247, 242, 0.60); }
 .station-tag {
   margin-left: auto;
   font-size: 0.7rem;
   font-weight: 600;
-  color: var(--gold-dark);
+  color: var(--gold);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -669,21 +696,26 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 
 @media (max-width: 880px) { .goals-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* ---------- cta band ---------- */
-.cta-band { background: var(--cream); }
+/* ---------- cta band — royal blue ---------- */
+.cta-band {
+  background: #0E2E68;
+  color: var(--cream);
+  border-top: 1px solid rgba(255, 196, 46, 0.12);
+}
 .cta-card {
-  background: var(--paper);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--radius);
   padding: clamp(2rem, 5vw, 3.5rem);
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 2.5rem;
   align-items: center;
-  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
-.cta-card h2 { margin-bottom: 0.75rem; }
-.cta-card p { color: var(--ink-soft); margin-bottom: 0; }
+.cta-card h2 { margin-bottom: 0.75rem; color: var(--cream); }
+.cta-card p { color: rgba(250, 247, 242, 0.78); margin-bottom: 0; }
 .cta-actions {
   display: flex;
   flex-direction: column;
