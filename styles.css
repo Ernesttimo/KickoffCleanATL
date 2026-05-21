@@ -290,7 +290,18 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 6rem);
 }
 .hero::before { content: none; }
-.hero-inner { position: relative; max-width: 880px; z-index: 3; }
+.hero-inner {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 3;
+}
+.hero-inner .eyebrow { display: inline-block; }
+.hero-inner h1 { margin-left: auto; margin-right: auto; }
+.hero-inner p.lede { margin-left: auto; margin-right: auto; }
+.hero-actions { justify-content: center; }
+.next-session { margin-left: auto; margin-right: auto; }
 
 /* ---------- hero vector backdrop (SVG) ---------- */
 .hero-vectors {
