@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202605211032" />
-  <link rel="stylesheet" href="sign-up.css?v=202605211017" />
+  <link rel="stylesheet" href="styles.css?v=202605211036" />
+  <link rel="stylesheet" href="sign-up.css?v=202605211036" />
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/logo-256.png" />
 </head>
@@ -296,14 +296,92 @@
     </div>
   </footer>
 
-  <!-- Show the success message if Formspree redirects back with ?success=1 -->
+  <!--
+    Form submission handler.
+
+    Default behaviour (works without ANY external setup):
+      Opens the visitor's email client with a fully-formatted email pre-filled
+      with their submission data. They tap send → email arrives at
+      hello@kickoffcleanatl.com (change RECIPIENT below if your inbox is elsewhere).
+
+    To upgrade to a real form backend (recommended once you have time):
+      1. Sign up at https://formspree.io (free)
+      2. Create a form, copy your endpoint (https://formspree.io/f/XXXXXXXX)
+      3. Replace the form action="" attribute (search "REPLACE_WITH_YOUR_FORMSPREE_ID")
+      4. Set USE_MAILTO_FALLBACK below to false
+      5. Submit a test entry, click Formspree's verification email
+  -->
   <script>
-    if (new URLSearchParams(window.location.search).get('success') === '1') {
-      var s = document.getElementById('success');
+    (function () {
+      var RECIPIENT = 'hello@kickoffcleanatl.com';
+      var USE_MAILTO_FALLBACK = true;
+
       var form = document.querySelector('.su-form');
-      if (s) { s.hidden = false; s.scrollIntoView({ behavior: 'smooth' }); }
-      if (form) form.style.display = 'none';
-    }
+      if (!form) return;
+
+      if (new URLSearchParams(window.location.search).get('success') === '1') {
+        var s0 = document.getElementById('success');
+        if (s0) { s0.hidden = false; s0.scrollIntoView({ behavior: 'smooth' }); }
+        form.style.display = 'none';
+        return;
+      }
+
+      var action = form.getAttribute('action') || '';
+      var formspreeReady = action.indexOf('REPLACE_WITH') === -1 && action.indexOf('formspree.io') !== -1;
+      if (formspreeReady && !USE_MAILTO_FALLBACK) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        var labels = {
+          fullName: 'Full name',
+          email: 'Email',
+          phone: 'Mobile phone',
+          session: 'Session',
+          emergencyName: 'Emergency contact (name)',
+          emergencyPhone: 'Emergency contact (phone)',
+          shirtSize: 'T-shirt size',
+          age: 'Age bracket',
+          notes: 'Anything we should know',
+          waiver: 'Waiver agreed',
+          photoRelease: 'Photo release',
+          updates: 'Subscribed to updates'
+        };
+
+        var fd = new FormData(form);
+        var lines = [];
+        Object.keys(labels).forEach(function (key) {
+          var val = fd.get(key);
+          if (val === null || val === '') return;
+          if (key === 'waiver' || key === 'photoRelease') val = 'Yes';
+          if (key === 'updates') val = (val === 'yes') ? 'Yes' : 'No';
+          if (key === 'session' && val === '2026-05-23-arts-center') val = 'Arts Center · Saturday, May 23, 2026 · 8 AM';
+          if (key === 'session' && val === 'future-session') val = 'Notify about future sessions';
+          if (key === 'age' && val === '16-17') val = '16–17 (parent/guardian on site)';
+          lines.push(labels[key] + ': ' + val);
+        });
+
+        var body =
+          'New Kickoff Clean ATL volunteer sign-up\n' +
+          '=======================================\n\n' +
+          lines.join('\n') +
+          '\n\n— Sent from kickoffcleanatl.com sign-up form';
+
+        var subject = 'Volunteer sign-up — ' + (fd.get('fullName') || 'New volunteer');
+        var href = 'mailto:' + RECIPIENT
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(body);
+
+        window.location.href = href;
+
+        setTimeout(function () {
+          var s = document.getElementById('success');
+          if (s) { s.hidden = false; s.scrollIntoView({ behavior: 'smooth' }); }
+          form.style.display = 'none';
+        }, 800);
+      });
+    })();
   </script>
 
 </body>
