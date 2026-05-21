@@ -287,21 +287,33 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   background: linear-gradient(180deg, #1A4A9E 0%, #0E2E68 100%);
   color: var(--cream);
   overflow: hidden;
-  padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 6rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(3.5rem, 7vw, 5rem);
 }
 .hero::before { content: none; }
 .hero-inner {
   position: relative;
   max-width: 880px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.hero-inner .eyebrow { display: inline-block; }
-.hero-inner h1 { margin-left: auto; margin-right: auto; }
-.hero-inner p.lede { margin-left: auto; margin-right: auto; }
-.hero-actions { justify-content: center; }
-.next-session { margin-left: auto; margin-right: auto; }
+.hero-inner .eyebrow,
+.hero-inner h1,
+.hero-inner p.lede,
+.hero-inner .next-session { text-align: center; }
+.hero-inner h1 { width: 100%; }
+.hero-inner p.lede { max-width: 640px; }
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
 
 /* ---------- hero vector backdrop (SVG) ---------- */
 .hero-vectors {
@@ -386,8 +398,9 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .hero-carousel-wrap {
   position: relative;
   width: 100%;
-  height: clamp(280px, 38vw, 460px);
-  margin-bottom: clamp(2rem, 5vw, 4rem);
+  height: clamp(260px, 34vw, 420px);
+  margin-top: clamp(-0.5rem, -1vw, -1rem);
+  margin-bottom: clamp(1rem, 2.5vw, 2rem);
   perspective: 1400px;
   pointer-events: none;
 }
