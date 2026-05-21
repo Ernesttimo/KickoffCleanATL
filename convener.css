@@ -194,19 +194,21 @@
   padding: clamp(3.5rem, 6vw, 5rem) 0;
 }
 .cv-pullquote {
-  margin: 0;
+  margin: 0 auto;
   max-width: 880px;
   text-align: center;
 }
 .cv-pullquote p {
   font-family: 'Crimson Pro', Georgia, serif;
-  font-weight: 500;
+  font-weight: 700;
   font-style: italic;
-  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
   line-height: 1.25;
   letter-spacing: -0.01em;
   color: var(--ink);
-  margin: 0 0 1.5rem;
+  margin: 0 auto 1.5rem;
+  max-width: 800px;
+  text-align: center;
   position: relative;
 }
 .cv-pullquote p::before {
