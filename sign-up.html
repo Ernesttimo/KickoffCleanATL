@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202605231040" />
-  <link rel="stylesheet" href="sign-up.css?v=202605231040" />
+  <link rel="stylesheet" href="styles.css?v=202605231637" />
+  <link rel="stylesheet" href="sign-up.css?v=202605231637" />
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/logo-256.png" />
 </head>
@@ -311,19 +311,21 @@
       var SUBMIT_URL = 'https://docs.google.com/forms/d/e/' + FORM_E_ID + '/formResponse';
 
       // Map of our form field names → Google Forms entry IDs
+      // (Pulled from the live form's FB_PUBLIC_LOAD_DATA — the Apps Script
+      // item.getId() values are item IDs, not the entry IDs needed for /formResponse.)
       var ENTRY = {
-        fullName:       'entry.503517170',
-        email:          'entry.1583485272',
-        phone:          'entry.524788821',
-        session:        'entry.1882322757',
-        emergencyName:  'entry.2133602238',
-        emergencyPhone: 'entry.125370298',
-        shirtSize:      'entry.1656299984',
-        age:            'entry.1549621110',
-        notes:          'entry.238511984',
-        waiver:         'entry.1913142422',
-        photoRelease:   'entry.1230950528',
-        updates:        'entry.1013205568'
+        fullName:       'entry.494621918',
+        email:          'entry.263510615',
+        phone:          'entry.242025160',
+        session:        'entry.457303387',
+        emergencyName:  'entry.112547942',
+        emergencyPhone: 'entry.1953834226',
+        shirtSize:      'entry.1798752147',
+        age:            'entry.1590020685',
+        notes:          'entry.1069453182',
+        waiver:         'entry.838231251',
+        photoRelease:   'entry.1557837554',
+        updates:        'entry.981212142'
       };
 
       // Translations: our internal values → exact Google Form choice labels
