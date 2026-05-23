@@ -945,6 +945,77 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   margin-top: 1.5rem;
 }
 
+/* ---------- email action popover (email-actions.js) ---------- */
+.ea-pop {
+  position: absolute;
+  z-index: 9999;
+  min-width: 260px;
+  padding: 6px;
+  border-radius: 14px;
+  background: #0E2E68;
+  border: 1px solid rgba(255, 196, 46, 0.35);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    0 6px 18px rgba(0, 0, 0, 0.30);
+  font-family: 'Inter', sans-serif;
+  animation: ea-pop-in 0.16s ease-out;
+}
+@keyframes ea-pop-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ea-pop__item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--cream);
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.ea-pop__item svg { color: var(--gold); flex-shrink: 0; }
+.ea-pop__item:hover,
+.ea-pop__item:focus-visible {
+  background: rgba(255, 196, 46, 0.14);
+  color: var(--cream);
+  outline: none;
+}
+.ea-pop__item:hover svg,
+.ea-pop__item:focus-visible svg { color: #FFE082; }
+
+.ea-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 8px);
+  z-index: 10000;
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  background: #0E2E68;
+  border: 1px solid rgba(255, 196, 46, 0.45);
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+.ea-toast--show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 /* ---------- accessibility ---------- */
 :focus-visible {
   outline: 3px solid var(--gold);
