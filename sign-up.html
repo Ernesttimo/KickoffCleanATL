@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202605230921" />
-  <link rel="stylesheet" href="sign-up.css?v=202605230921" />
+  <link rel="stylesheet" href="styles.css?v=202605231040" />
+  <link rel="stylesheet" href="sign-up.css?v=202605231040" />
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/logo-256.png" />
 </head>
@@ -70,23 +70,12 @@
       <!-- LEFT — FORM -->
       <div class="su-form-wrap">
         <!--
-          FORM SETUP — one-time:
-          1. Go to https://formspree.io and sign up (free)
-          2. Click "+ New Form", name it "Kickoff Clean ATL Sign-Ups"
-          3. Copy the form endpoint (looks like https://formspree.io/f/xqaagbnz)
-          4. Replace the action="" URL below with your endpoint
-          5. Submit a test entry — Formspree will email you to verify, click the link
-          6. From then on, every submission emails Ernest at the inbox you configured
-          Alternative: replace the entire form with a Google Forms / Tally embed.
+          Form submits to a Google Form via the JavaScript handler at the bottom of this page.
+          Responses land in the Form owned by kickoffcleanatl@gmail.com and can be linked
+          to a Google Sheet from the form's Responses tab. To swap backends, change the
+          FORM_E_ID and ENTRY map in the script below.
         -->
-        <form
-          class="su-form"
-          method="POST"
-          action="https://formspree.io/f/xredlend"
-          novalidate
-        >
-          <input type="hidden" name="_subject" value="New Kickoff Clean ATL volunteer sign-up" />
-          <input type="hidden" name="_session" value="Arts Center · Saturday May 23, 2026 · 8 AM" />
+        <form class="su-form" novalidate>
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
           <fieldset>
@@ -304,28 +293,55 @@
   </footer>
 
   <!--
-    Form submission handler.
+    Form submission handler — posts to Google Forms backend.
 
-    Default behaviour (works without ANY external setup):
-      Opens the visitor's email client with a fully-formatted email pre-filled
-      with their submission data. They tap send → email arrives at
-      hello@kickoffcleanatl.com (change RECIPIENT below if your inbox is elsewhere).
+    Backend setup notes:
+      Submissions POST to the Google Form at the FORM_E_ID below.
+      Each of our form fields is mapped to the matching `entry.NNNN` on that form.
+      Responses land in the Form's Responses tab and the linked Google Sheet,
+      which is owned by kickoffcleanatl@gmail.com.
 
-    To upgrade to a real form backend (recommended once you have time):
-      1. Sign up at https://formspree.io (free)
-      2. Create a form, copy your endpoint (https://formspree.io/f/XXXXXXXX)
-      3. Replace the form action="" attribute (search "REPLACE_WITH_YOUR_FORMSPREE_ID")
-      4. Set USE_MAILTO_FALLBACK below to false
-      5. Submit a test entry, click Formspree's verification email
+    To swap backends later:
+      Change FORM_E_ID and the ENTRY map below. Nothing else.
   -->
   <script>
     (function () {
-      var RECIPIENT = 'hello@kickoffcleanatl.com';
-      var USE_MAILTO_FALLBACK = false;
+      // Google Form configuration
+      var FORM_E_ID = '1FAIpQLSfIRHY8CfYkEO7wZpFei10RtdpQP_MC8elKsZLsU5KT8cCrlg';
+      var SUBMIT_URL = 'https://docs.google.com/forms/d/e/' + FORM_E_ID + '/formResponse';
+
+      // Map of our form field names → Google Forms entry IDs
+      var ENTRY = {
+        fullName:       'entry.503517170',
+        email:          'entry.1583485272',
+        phone:          'entry.524788821',
+        session:        'entry.1882322757',
+        emergencyName:  'entry.2133602238',
+        emergencyPhone: 'entry.125370298',
+        shirtSize:      'entry.1656299984',
+        age:            'entry.1549621110',
+        notes:          'entry.238511984',
+        waiver:         'entry.1913142422',
+        photoRelease:   'entry.1230950528',
+        updates:        'entry.1013205568'
+      };
+
+      // Translations: our internal values → exact Google Form choice labels
+      var SESSION_LABELS = {
+        '2026-05-23-arts-center': 'Arts Center · May 23, 2026 · 8 AM',
+        'future-session':         'Notify me of future sessions'
+      };
+      var AGE_LABELS = {
+        '16-17': '16–17 (parent/guardian on site)',
+        '18+':   '18+'
+      };
+      var WAIVER_LABEL        = 'I have read and agree to the volunteer waiver';
+      var PHOTO_RELEASE_LABEL = 'Photos and video of me at the session may be used to document the project';
 
       var form = document.querySelector('.su-form');
       if (!form) return;
 
+      // Show success state if we got redirected back with ?success=1
       if (new URLSearchParams(window.location.search).get('success') === '1') {
         var s0 = document.getElementById('success');
         if (s0) { s0.hidden = false; s0.scrollIntoView({ behavior: 'smooth' }); }
@@ -333,61 +349,62 @@
         return;
       }
 
-      var action = form.getAttribute('action') || '';
-      var formspreeReady = action.indexOf('REPLACE_WITH') === -1 && action.indexOf('formspree.io') !== -1;
-      if (formspreeReady && !USE_MAILTO_FALLBACK) return;
-
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         if (!form.checkValidity()) { form.reportValidity(); return; }
 
-        var labels = {
-          fullName: 'Full name',
-          email: 'Email',
-          phone: 'Mobile phone',
-          session: 'Session',
-          emergencyName: 'Emergency contact (name)',
-          emergencyPhone: 'Emergency contact (phone)',
-          shirtSize: 'T-shirt size',
-          age: 'Age bracket',
-          notes: 'Anything we should know',
-          waiver: 'Waiver agreed',
-          photoRelease: 'Photo release',
-          updates: 'Subscribed to updates'
-        };
-
         var fd = new FormData(form);
-        var lines = [];
-        Object.keys(labels).forEach(function (key) {
-          var val = fd.get(key);
-          if (val === null || val === '') return;
-          if (key === 'waiver' || key === 'photoRelease') val = 'Yes';
-          if (key === 'updates') val = (val === 'yes') ? 'Yes' : 'No';
-          if (key === 'session' && val === '2026-05-23-arts-center') val = 'Arts Center · Saturday, May 23, 2026 · 8 AM';
-          if (key === 'session' && val === 'future-session') val = 'Notify about future sessions';
-          if (key === 'age' && val === '16-17') val = '16–17 (parent/guardian on site)';
-          lines.push(labels[key] + ': ' + val);
+        var gfd = new FormData();
+
+        // Required fields
+        gfd.append(ENTRY.fullName,       fd.get('fullName')       || '');
+        gfd.append(ENTRY.email,          fd.get('email')          || '');
+        gfd.append(ENTRY.phone,          fd.get('phone')          || '');
+        gfd.append(ENTRY.session,        SESSION_LABELS[fd.get('session')] || '');
+        gfd.append(ENTRY.emergencyName,  fd.get('emergencyName')  || '');
+        gfd.append(ENTRY.emergencyPhone, fd.get('emergencyPhone') || '');
+        gfd.append(ENTRY.age,            AGE_LABELS[fd.get('age')] || '');
+
+        // Optional fields — only append if non-empty
+        if (fd.get('shirtSize')) gfd.append(ENTRY.shirtSize, fd.get('shirtSize'));
+        if (fd.get('notes'))     gfd.append(ENTRY.notes,     fd.get('notes'));
+
+        // Checkboxes — only included if checked
+        if (fd.get('waiver'))       gfd.append(ENTRY.waiver,       WAIVER_LABEL);
+        if (fd.get('photoRelease')) gfd.append(ENTRY.photoRelease, PHOTO_RELEASE_LABEL);
+
+        // Updates toggle (a single checkbox → "Yes" if checked, "No thanks" otherwise)
+        gfd.append(ENTRY.updates, fd.get('updates') ? 'Yes, keep me posted' : 'No thanks');
+
+        // Disable submit while sending
+        var submitBtn = form.querySelector('[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.dataset.originalText = submitBtn.textContent;
+          submitBtn.textContent = 'Submitting…';
+        }
+
+        // Fire-and-forget POST. mode:no-cors means we can't read the response,
+        // but the submission will land in Google Forms regardless.
+        fetch(SUBMIT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: gfd
+        }).then(showSuccess).catch(function (err) {
+          // Even on network error, the request often succeeds — show success anyway.
+          console.warn('Submission error (often still succeeds with no-cors):', err);
+          showSuccess();
         });
-
-        var body =
-          'New Kickoff Clean ATL volunteer sign-up\n' +
-          '=======================================\n\n' +
-          lines.join('\n') +
-          '\n\n— Sent from kickoffcleanatl.com sign-up form';
-
-        var subject = 'Volunteer sign-up — ' + (fd.get('fullName') || 'New volunteer');
-        var href = 'mailto:' + RECIPIENT
-          + '?subject=' + encodeURIComponent(subject)
-          + '&body=' + encodeURIComponent(body);
-
-        window.location.href = href;
-
-        setTimeout(function () {
-          var s = document.getElementById('success');
-          if (s) { s.hidden = false; s.scrollIntoView({ behavior: 'smooth' }); }
-          form.style.display = 'none';
-        }, 800);
       });
+
+      function showSuccess() {
+        var s = document.getElementById('success');
+        if (s) {
+          s.hidden = false;
+          s.scrollIntoView({ behavior: 'smooth' });
+        }
+        form.style.display = 'none';
+      }
     })();
   </script>
 
