@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202605231801" />
-  <link rel="stylesheet" href="sign-up.css?v=202605231801" />
+  <link rel="stylesheet" href="styles.css?v=202605240521" />
+  <link rel="stylesheet" href="sign-up.css?v=202605240521" />
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/logo-256.png" />
 </head>
@@ -239,7 +239,7 @@
     </div>
   </section>
 
-  <!-- ============ POST-SUBMIT MESSAGE (shown if URL has ?success=1) ============ -->
+  <!-- ============ POST-SUBMIT MESSAGE (shown after a successful sign-up) ============ -->
   <section class="su-success" id="success" hidden>
     <div class="container">
       <span class="eyebrow">You're in</span>
@@ -248,6 +248,11 @@
         You'll get a confirmation email shortly with the meeting point, the volunteer waiver,
         and what to expect on the morning. A short Saturday-morning text goes out the day before.
         See you at Arts Center.
+      </p>
+      <p class="su-success-note">
+        Didn't see a confirmation within 24 hours? Email us at
+        <a href="mailto:hello@kickoffcleanatl.com?subject=Volunteer%20sign-up%20follow-up">hello@kickoffcleanatl.com</a>
+        — we'll add you to the list manually.
       </p>
     </div>
   </section>
@@ -328,7 +333,19 @@
         updates:        'entry.981212142'
       };
 
-      // Translations: our internal values → exact Google Form choice labels
+      // ─────────────────────────────────────────────────────────────────────
+      // ⚠️  IMPORTANT — KEEP IN SYNC WITH THE GOOGLE FORM
+      // ─────────────────────────────────────────────────────────────────────
+      // Every value below must match an EXACT choice on the Google Form.
+      // If you change a session date here, you MUST also update the matching
+      // option text in the form's Session question — open:
+      //   https://docs.google.com/forms/d/1dfIlDpgtKtPaQUjsGo9v691yy75mzDhGbUMfkPuecac/edit
+      // The middle character between "Center" and "May" is U+00B7 (·), NOT a
+      // period or a bullet. If a submitted value doesn't match an accepted
+      // choice, Google returns HTTP 400 and the submission is silently lost.
+      // The Apps Script email notification is the primary signal that
+      // submissions are actually flowing — no emails for 24h = check this.
+      // ─────────────────────────────────────────────────────────────────────
       var SESSION_LABELS = {
         '2026-05-30-arts-center': 'Arts Center · May 30, 2026 · 8 AM',
         'future-session':         'Notify me of future sessions'
@@ -339,6 +356,9 @@
       };
       var WAIVER_LABEL        = 'I have read and agree to the volunteer waiver';
       var PHOTO_RELEASE_LABEL = 'Photos and video of me at the session may be used to document the project';
+      // Safety-net fallback: if Google Forms rejects, we also offer the
+      // visitor a one-click backup email so the sign-up isn't lost.
+      var BACKUP_EMAIL = 'hello@kickoffcleanatl.com';
 
       var form = document.querySelector('.su-form');
       if (!form) return;
@@ -357,26 +377,32 @@
 
         var fd = new FormData(form);
         var gfd = new FormData();
+        var asObject = {};   // for diagnostic logging + mailto fallback
+
+        function setField(key, value) {
+          if (value === undefined || value === null || value === '') return;
+          gfd.append(ENTRY[key], value);
+          asObject[key] = value;
+        }
 
         // Required fields
-        gfd.append(ENTRY.fullName,       fd.get('fullName')       || '');
-        gfd.append(ENTRY.email,          fd.get('email')          || '');
-        gfd.append(ENTRY.phone,          fd.get('phone')          || '');
-        gfd.append(ENTRY.session,        SESSION_LABELS[fd.get('session')] || '');
-        gfd.append(ENTRY.emergencyName,  fd.get('emergencyName')  || '');
-        gfd.append(ENTRY.emergencyPhone, fd.get('emergencyPhone') || '');
-        gfd.append(ENTRY.age,            AGE_LABELS[fd.get('age')] || '');
+        setField('fullName',       fd.get('fullName'));
+        setField('email',          fd.get('email'));
+        setField('phone',          fd.get('phone'));
+        setField('session',        SESSION_LABELS[fd.get('session')]);
+        setField('emergencyName',  fd.get('emergencyName'));
+        setField('emergencyPhone', fd.get('emergencyPhone'));
+        setField('age',            AGE_LABELS[fd.get('age')]);
+        // Optional fields
+        setField('shirtSize',      fd.get('shirtSize'));
+        setField('notes',          fd.get('notes'));
+        // Checkbox-style
+        if (fd.get('waiver'))       setField('waiver',       WAIVER_LABEL);
+        if (fd.get('photoRelease')) setField('photoRelease', PHOTO_RELEASE_LABEL);
+        setField('updates', fd.get('updates') ? 'Yes, keep me posted' : 'No thanks');
 
-        // Optional fields — only append if non-empty
-        if (fd.get('shirtSize')) gfd.append(ENTRY.shirtSize, fd.get('shirtSize'));
-        if (fd.get('notes'))     gfd.append(ENTRY.notes,     fd.get('notes'));
-
-        // Checkboxes — only included if checked
-        if (fd.get('waiver'))       gfd.append(ENTRY.waiver,       WAIVER_LABEL);
-        if (fd.get('photoRelease')) gfd.append(ENTRY.photoRelease, PHOTO_RELEASE_LABEL);
-
-        // Updates toggle (a single checkbox → "Yes" if checked, "No thanks" otherwise)
-        gfd.append(ENTRY.updates, fd.get('updates') ? 'Yes, keep me posted' : 'No thanks');
+        // Diagnostic log — visible in browser DevTools if a sign-up ever seems lost
+        console.log('[Kickoff Clean ATL] Submitting volunteer sign-up:', asObject);
 
         // Disable submit while sending
         var submitBtn = form.querySelector('[type="submit"]');
@@ -386,30 +412,41 @@
           submitBtn.textContent = 'Submitting…';
         }
 
-        // Fire-and-forget POST. mode:no-cors means we can't read the response,
-        // but the submission will land in Google Forms regardless.
+        // Fire-and-forget POST. mode:no-cors means we can't read the response
+        // headers, but the request still reaches Google Forms. If Google
+        // rejects (e.g. an option no longer matches), the submission is
+        // silently dropped — that's why the Apps Script email notification is
+        // the real signal that everything is flowing.
         fetch(SUBMIT_URL, {
           method: 'POST',
           mode: 'no-cors',
           body: gfd
-        }).then(showSuccess).catch(function (err) {
-          // Even on network error, the request often succeeds — show success anyway.
-          console.warn('Submission error (often still succeeds with no-cors):', err);
-          showSuccess();
+        }).then(function () {
+          showSuccess(asObject);
+        }).catch(function (err) {
+          console.warn('[Kickoff Clean ATL] fetch error (request may still have succeeded):', err);
+          showSuccess(asObject);
         });
       });
 
-      function showSuccess() {
+      function showSuccess(submittedData) {
         var s = document.getElementById('success');
         if (s) {
           s.hidden = false;
           s.scrollIntoView({ behavior: 'smooth' });
         }
         form.style.display = 'none';
+
+        // Stash the submitted payload on window for diagnostics if the visitor
+        // ever has to debug a missing confirmation (volunteer can be asked to
+        // open DevTools → Console → look for the [Kickoff Clean ATL] entry).
+        if (submittedData) {
+          try { window.__lastSignUp = submittedData; } catch (_) {}
+        }
       }
     })();
   </script>
 
-  <script src="email-actions.js?v=202605231801" defer></script>
+  <script src="email-actions.js?v=202605240521" defer></script>
 </body>
 </html>
