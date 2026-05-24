@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202605240521" />
-  <link rel="stylesheet" href="sign-up.css?v=202605240521" />
+  <link rel="stylesheet" href="styles.css?v=202605240538" />
+  <link rel="stylesheet" href="sign-up.css?v=202605240538" />
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/logo-256.png" />
 </head>
@@ -164,18 +164,104 @@
 
           <fieldset>
             <legend>Agreements</legend>
-            <label class="su-check">
-              <input type="checkbox" name="waiver" value="agreed" required />
-              <span>I have read and agree to the volunteer waiver and release of liability. <span class="req">*</span></span>
-            </label>
-            <label class="su-check">
-              <input type="checkbox" name="photoRelease" value="agreed" />
-              <span>I'm OK being photographed during the session for project documentation and social posts.</span>
-            </label>
-            <label class="su-check">
-              <input type="checkbox" name="updates" value="yes" checked />
-              <span>Send me email updates about Kickoff Clean ATL sessions and milestones.</span>
-            </label>
+
+            <!-- ===== Volunteer Waiver ===== -->
+            <div class="su-agreement">
+              <label class="su-check">
+                <input type="checkbox" name="waiver" value="agreed" required />
+                <span>I have read and agree to the volunteer waiver and release of liability. <span class="req">*</span></span>
+              </label>
+              <details class="su-policy">
+                <summary>Read the volunteer waiver</summary>
+                <div class="su-policy-body">
+                  <h4>Volunteer Waiver &amp; Release of Liability</h4>
+                  <p>I am signing up freely and voluntarily to participate in a Kickoff Clean ATL cleanup session (the &ldquo;Session&rdquo;) at a MARTA station or other Atlanta location.</p>
+
+                  <h4>What I understand about the work</h4>
+                  <p>The Session involves manual cleaning in and around a public transit station &mdash; sweeping, mopping, scrubbing, removing trash, cleaning surfaces, and other physical tasks &mdash; in a public space alongside other volunteers and members of the public.</p>
+
+                  <h4>Risks I accept</h4>
+                  <p>The work involves real risks, which may include but are not limited to: slips, trips, and falls; contact with sharp objects (needles, glass, metal); contact with bodily fluids or biohazardous material; exposure to dust, fumes, or cleaning agents; heat, cold, or weather exposure; muscle strain or other physical injury; and risks from proximity to MARTA trains, vehicles, or members of the public. I am physically able to do the work I&rsquo;m signing up for, and I will tell the on-site lead if I&rsquo;m not.</p>
+
+                  <h4>My agreements on the day</h4>
+                  <ul>
+                    <li>I will follow all safety instructions, wear the provided PPE (gloves, vest, eye protection, mask), and stop work and notify the on-site lead if I feel unwell or unsafe.</li>
+                    <li>I will not enter any restricted area without authorization from MARTA staff.</li>
+                    <li>I will not bring or use any cleaning agent, equipment, or tool that hasn&rsquo;t been provided or approved by the on-site lead.</li>
+                  </ul>
+
+                  <h4>Release of liability</h4>
+                  <p>In exchange for being allowed to participate, I release, waive, and discharge Kickoff Clean ATL, its founder Ernest Timothy, the Metropolitan Atlanta Rapid Transit Authority (MARTA), the City of Atlanta, and their respective officers, employees, volunteers, and agents (collectively, the &ldquo;Released Parties&rdquo;) from any and all claims, liabilities, demands, actions, or causes of action arising out of or related to any loss, damage, injury, or death sustained while participating in the Session &mdash; except where caused by the gross negligence or willful misconduct of a Released Party.</p>
+
+                  <h4>Medical</h4>
+                  <p>I authorize the on-site lead to seek emergency medical treatment on my behalf if I am injured and unable to consent. I am responsible for the cost of any medical treatment I receive. I will inform the on-site lead of any medical condition, allergy, or medication that could affect my safety during the Session.</p>
+
+                  <h4>Volunteers age 16&ndash;17</h4>
+                  <p>A parent or legal guardian must be physically present at the Session and must sign the on-site waiver before the volunteer can begin work.</p>
+
+                  <h4>Governing law</h4>
+                  <p>This waiver is governed by the laws of the State of Georgia. If any provision is found unenforceable, the remainder stays in force.</p>
+
+                  <em class="policy-stamp">Kickoff Clean ATL &middot; Volunteer Waiver v1.0 &middot; effective May 2026</em>
+                </div>
+              </details>
+            </div>
+
+            <!-- ===== Photo &amp; Media Release ===== -->
+            <div class="su-agreement">
+              <label class="su-check">
+                <input type="checkbox" name="photoRelease" value="agreed" />
+                <span>I&rsquo;m OK being photographed during the session for project documentation and social posts.</span>
+              </label>
+              <details class="su-policy">
+                <summary>Read the photo &amp; media release</summary>
+                <div class="su-policy-body">
+                  <h4>Photo &amp; Media Release</h4>
+                  <p>By checking this box, I give Kickoff Clean ATL and Ernest Timothy permission to photograph, video-record, and audio-record me during the Session, and to use those recordings &mdash; without compensation to me &mdash; on the Kickoff Clean ATL website, social media accounts (Instagram, LinkedIn, TikTok, X, Facebook), in press materials, in sponsor and donor reports, and in other promotional materials for the project.</p>
+
+                  <h4>What this covers</h4>
+                  <ul>
+                    <li>The grant is non-exclusive and worldwide.</li>
+                    <li>My name, likeness, and image may be used. My contact details will never be published.</li>
+                    <li>I can withdraw consent at any time by emailing <a href="mailto:hello@kickoffcleanatl.com?subject=Photo%20release%20withdrawal">hello@kickoffcleanatl.com</a>. New material featuring me will be retired within 14 days, and reasonable efforts will be made to retire existing material from active use.</li>
+                    <li>This box is optional. If I don&rsquo;t check it, I can still volunteer &mdash; I&rsquo;ll be given a visible marker on the day so the photo team knows to keep me out of frame.</li>
+                  </ul>
+
+                  <em class="policy-stamp">Kickoff Clean ATL &middot; Photo Release v1.0 &middot; effective May 2026</em>
+                </div>
+              </details>
+            </div>
+
+            <!-- ===== Email Updates &amp; Privacy ===== -->
+            <div class="su-agreement">
+              <label class="su-check">
+                <input type="checkbox" name="updates" value="yes" checked />
+                <span>Send me email updates about Kickoff Clean ATL sessions and milestones.</span>
+              </label>
+              <details class="su-policy">
+                <summary>Read what we&rsquo;ll send</summary>
+                <div class="su-policy-body">
+                  <h4>Email Updates &amp; Privacy</h4>
+                  <p>By checking this box, I&rsquo;m asking Kickoff Clean ATL to send me occasional emails about:</p>
+                  <ul>
+                    <li>Future cleanup sessions and how to sign up</li>
+                    <li>Project milestones (stations cleaned, volunteer counts, before/after results)</li>
+                    <li>Sponsor recognition and the occasional ask</li>
+                  </ul>
+
+                  <h4>What we won&rsquo;t do</h4>
+                  <ul>
+                    <li>Sell, rent, share, or trade my email with anyone outside the Kickoff Clean ATL team.</li>
+                    <li>Spam &mdash; typical cadence is one or two emails per month, slightly more in the week before a session.</li>
+                  </ul>
+
+                  <h4>Unsubscribing</h4>
+                  <p>I can unsubscribe at any time by replying &ldquo;unsubscribe&rdquo; or by emailing <a href="mailto:hello@kickoffcleanatl.com?subject=Unsubscribe">hello@kickoffcleanatl.com</a>. Unchecking this box still lets me submit the form &mdash; I just won&rsquo;t get non-essential updates. Logistical emails about a session I&rsquo;ve signed up for will always be sent.</p>
+
+                  <em class="policy-stamp">Kickoff Clean ATL &middot; Communications Policy v1.0 &middot; effective May 2026</em>
+                </div>
+              </details>
+            </div>
           </fieldset>
 
           <div class="su-submit-row">
@@ -447,6 +533,6 @@
     })();
   </script>
 
-  <script src="email-actions.js?v=202605240521" defer></script>
+  <script src="email-actions.js?v=202605240538" defer></script>
 </body>
 </html>
