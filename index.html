@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202606050147" />
+  <link rel="stylesheet" href="styles.css?v=202606050207" />
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/logo-256.png" />
 </head>
@@ -260,8 +260,31 @@
         Atlantan, and what would be in front of every World&nbsp;Cup visitor.
       </p>
 
+      <!-- ===== Quick-scan thumbnail menu — all six conditions at a glance ===== -->
+      <div class="evidence-menu" role="list" aria-label="All evidence photos — click to enlarge">
+        <button class="evidence-thumb" type="button" data-evidence-index="0" aria-label="View photo 1 of 6 — stained tile and weathered barriers">
+          <img src="images/conditions/IMG_5562-800.jpg" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="evidence-thumb" type="button" data-evidence-index="1" aria-label="View photo 2 of 6 — urine pooled at barrier base">
+          <img src="images/conditions/IMG_5565-800.jpg" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="evidence-thumb" type="button" data-evidence-index="2" aria-label="View photo 3 of 6 — trash on the concourse floor">
+          <img src="images/conditions/IMG_5567-800.jpg" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="evidence-thumb" type="button" data-evidence-index="3" aria-label="View photo 4 of 6 — stained stairwell">
+          <img src="images/conditions/IMG_5580-800.jpg" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="evidence-thumb" type="button" data-evidence-index="4" aria-label="View photo 5 of 6 — elevator alcove with litter">
+          <img src="images/conditions/IMG_5594-800.jpg" alt="" loading="lazy" decoding="async" />
+        </button>
+        <button class="evidence-thumb" type="button" data-evidence-index="5" aria-label="View photo 6 of 6 — escalator base with stained floor">
+          <img src="images/conditions/IMG_5598-800.jpg" alt="" loading="lazy" decoding="async" />
+        </button>
+        <p class="evidence-menu-hint">Tap any image to enlarge &middot; <span>scroll for the details</span></p>
+      </div>
+
       <div class="evidence-grid">
-        <figure class="evidence-card">
+        <figure class="evidence-card" data-evidence-index="0">
           <img
             src="images/conditions/IMG_5562-800.jpg"
             srcset="images/conditions/IMG_5562-800.jpg 800w, images/conditions/IMG_5562-1400.jpg 1400w"
@@ -271,17 +294,17 @@
           <figcaption>Stained tile and weathered construction barriers &mdash; with no signage telling anyone what's behind them.</figcaption>
         </figure>
 
-        <figure class="evidence-card">
+        <figure class="evidence-card" data-evidence-index="1">
           <img
             src="images/conditions/IMG_5565-800.jpg"
             srcset="images/conditions/IMG_5565-800.jpg 800w, images/conditions/IMG_5565-1400.jpg 1400w"
             sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"
             alt="Close-up of liquid pooling on station floor tiles at the base of a weathered wood construction barrier."
             loading="lazy" decoding="async" />
-          <figcaption>Liquid pooling at a barrier base. The kind of thing a deep clean takes care of in an hour.</figcaption>
+          <figcaption>This is urine &mdash; not water &mdash; pooled at a barrier base, with a pungent stench carrying the length of the concourse. The welcome any commuter, and any visitor, gets.</figcaption>
         </figure>
 
-        <figure class="evidence-card">
+        <figure class="evidence-card" data-evidence-index="2">
           <img
             src="images/conditions/IMG_5567-800.jpg"
             srcset="images/conditions/IMG_5567-800.jpg 800w, images/conditions/IMG_5567-1400.jpg 1400w"
@@ -291,7 +314,7 @@
           <figcaption>Trash on the concourse floor, paid advertising still running on the wall behind it.</figcaption>
         </figure>
 
-        <figure class="evidence-card">
+        <figure class="evidence-card" data-evidence-index="3">
           <img
             src="images/conditions/IMG_5580-800.jpg"
             srcset="images/conditions/IMG_5580-800.jpg 800w, images/conditions/IMG_5580-1400.jpg 1400w"
@@ -301,7 +324,7 @@
           <figcaption>A stairwell every commuter uses, worn well past what age alone can explain.</figcaption>
         </figure>
 
-        <figure class="evidence-card">
+        <figure class="evidence-card" data-evidence-index="4">
           <img
             src="images/conditions/IMG_5594-800.jpg"
             srcset="images/conditions/IMG_5594-800.jpg 800w, images/conditions/IMG_5594-1400.jpg 1400w"
@@ -311,7 +334,7 @@
           <figcaption>The elevator alcove &mdash; the only path for travelers with luggage, strollers, or mobility needs.</figcaption>
         </figure>
 
-        <figure class="evidence-card">
+        <figure class="evidence-card" data-evidence-index="5">
           <img
             src="images/conditions/IMG_5598-800.jpg"
             srcset="images/conditions/IMG_5598-800.jpg 800w, images/conditions/IMG_5598-1400.jpg 1400w"
@@ -493,7 +516,119 @@
     </div>
   </footer>
 
+  <!-- ============ EVIDENCE LIGHTBOX ============ -->
+  <!-- Single overlay reused for all 6 photos; opened by .evidence-thumb or .evidence-card clicks. -->
+  <div class="ev-lightbox" id="ev-lightbox" role="dialog" aria-modal="true" aria-labelledby="ev-lb-caption" hidden>
+    <button class="ev-lb-close" type="button" aria-label="Close (Esc)">&times;</button>
+    <button class="ev-lb-nav ev-lb-prev" type="button" aria-label="Previous photo (left arrow)">&lsaquo;</button>
+    <button class="ev-lb-nav ev-lb-next" type="button" aria-label="Next photo (right arrow)">&rsaquo;</button>
+    <figure class="ev-lb-figure">
+      <img class="ev-lb-img" alt="" />
+      <figcaption class="ev-lb-cap" id="ev-lb-caption"></figcaption>
+      <div class="ev-lb-counter" aria-hidden="true"></div>
+    </figure>
+  </div>
+
+  <script>
+    /* Evidence lightbox — no deps. Pulls full-res 1400w + caption from each
+       .evidence-card by data-evidence-index, opens from any .evidence-thumb
+       or .evidence-card click, supports Esc / ← / → / backdrop-click to close. */
+    (function () {
+      var lb       = document.getElementById('ev-lightbox');
+      if (!lb) return;
+      var imgEl    = lb.querySelector('.ev-lb-img');
+      var capEl    = lb.querySelector('.ev-lb-cap');
+      var counter  = lb.querySelector('.ev-lb-counter');
+      var closeBtn = lb.querySelector('.ev-lb-close');
+      var prevBtn  = lb.querySelector('.ev-lb-prev');
+      var nextBtn  = lb.querySelector('.ev-lb-next');
+
+      // Build the photo list from the captioned cards (source of truth).
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.evidence-card'));
+      var photos = cards.map(function (card) {
+        var img = card.querySelector('img');
+        var cap = card.querySelector('figcaption');
+        // Prefer the largest in srcset; fall back to src.
+        var srcset = img.getAttribute('srcset') || '';
+        var large = srcset.split(',').map(function (s) { return s.trim().split(/\s+/)[0]; }).pop() || img.src;
+        return { src: large, alt: img.alt || '', caption: cap ? cap.innerHTML : '' };
+      });
+      if (!photos.length) return;
+
+      var current = 0;
+      var prevFocus = null;
+
+      function render() {
+        var p = photos[current];
+        imgEl.src = p.src;
+        imgEl.alt = p.alt;
+        capEl.innerHTML = p.caption;
+        counter.textContent = (current + 1) + ' / ' + photos.length;
+      }
+
+      function open(index) {
+        current = (index + photos.length) % photos.length;
+        prevFocus = document.activeElement;
+        render();
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+        document.addEventListener('keydown', onKey);
+      }
+      function close() {
+        lb.hidden = true;
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKey);
+        if (prevFocus && prevFocus.focus) prevFocus.focus();
+      }
+      function next() { current = (current + 1) % photos.length; render(); }
+      function prev() { current = (current - 1 + photos.length) % photos.length; render(); }
+
+      function onKey(e) {
+        if (e.key === 'Escape') { e.preventDefault(); close(); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+        else if (e.key === 'ArrowLeft')  { e.preventDefault(); prev(); }
+      }
+
+      // Open from thumbnail menu
+      document.querySelectorAll('.evidence-thumb').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          open(parseInt(btn.dataset.evidenceIndex, 10) || 0);
+        });
+      });
+      // Open from a captioned card image
+      cards.forEach(function (card) {
+        var img = card.querySelector('img');
+        if (!img) return;
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function () {
+          open(parseInt(card.dataset.evidenceIndex, 10) || 0);
+        });
+      });
+
+      closeBtn.addEventListener('click', close);
+      nextBtn.addEventListener('click', next);
+      prevBtn.addEventListener('click', prev);
+      // Backdrop click — only when the click lands on the overlay itself, not the figure.
+      lb.addEventListener('click', function (e) {
+        if (e.target === lb) close();
+      });
+
+      // Swipe support on touch devices
+      var touchStartX = null;
+      lb.addEventListener('touchstart', function (e) {
+        if (e.touches.length === 1) touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      lb.addEventListener('touchend', function (e) {
+        if (touchStartX == null) return;
+        var dx = (e.changedTouches[0].clientX - touchStartX);
+        if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); }
+        touchStartX = null;
+      }, { passive: true });
+    })();
+  </script>
+
   <script src="carousel.js" defer></script>
-  <script src="email-actions.js?v=202606050147" defer></script>
+  <script src="email-actions.js?v=202606050207" defer></script>
 </body>
 </html>
