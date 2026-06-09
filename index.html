@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202606050332" />
+  <link rel="stylesheet" href="styles.css?v=202606091006" />
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/logo-256.png" />
 </head>
@@ -494,7 +494,114 @@
     </div>
   </footer>
 
+  <!-- ============ DOCUMENTARY MODAL ============ -->
+  <!--
+    Auto-opens after 60 seconds of *visible* time on the page (tab-away pauses
+    the timer). Shows once per browser session via sessionStorage. YouTube
+    iframe with autoplay=1&mute=1 — required by browsers for autoplay; the
+    visitor can click the speaker icon to unmute. Closes via X, Esc, or
+    click-outside; iframe src is cleared on close to stop playback.
+  -->
+  <div class="doc-modal" id="doc-modal" role="dialog" aria-modal="true" aria-labelledby="doc-modal-title" hidden>
+    <button class="doc-modal__close" type="button" aria-label="Close (Esc)">&times;</button>
+    <div class="doc-modal__inner">
+      <span class="doc-modal__eyebrow">Watch the case</span>
+      <h2 class="doc-modal__title" id="doc-modal-title">A short film by the Convener.</h2>
+      <p class="doc-modal__lede">
+        Ernest Timothy walks the case for Kickoff Clean ATL in his own words.
+        Three minutes, one walk, one city's transit ahead of the world arriving.
+      </p>
+      <div class="doc-modal__frame">
+        <iframe id="doc-modal-iframe"
+                src=""
+                title="Kickoff Clean ATL — A short film by the Convener"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen></iframe>
+      </div>
+      <p class="doc-modal__hint">Tap the speaker icon to unmute &middot; press Esc or click outside to close</p>
+    </div>
+  </div>
+
+  <script>
+    /* Documentary modal — opens after 60s of visible time on the landing page.
+       Sessions-storage flag ("kca-doc-shown") ensures it shows only once per
+       browser session. The YouTube iframe src is only set when the modal
+       opens, and cleared when it closes, so nothing buffers in the background. */
+    (function () {
+      var modal    = document.getElementById('doc-modal');
+      var iframe   = document.getElementById('doc-modal-iframe');
+      if (!modal || !iframe) return;
+      var closeBtn = modal.querySelector('.doc-modal__close');
+
+      var SESSION_KEY = 'kca-doc-shown';
+      if (sessionStorage.getItem(SESSION_KEY) === '1') return;
+
+      var YT_VIDEO_ID = 'LHoVlUAv4hw';
+      var YT_EMBED = 'https://www.youtube.com/embed/' + YT_VIDEO_ID +
+        '?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1';
+
+      var TRIGGER_MS = 60 * 1000;   // 60 seconds of visible time
+      var elapsed = 0;
+      var timer = null;
+      var timerStartedAt = 0;
+      var prevFocus = null;
+      var armed = true;             // false once opened/closed
+
+      function startTimer() {
+        if (!armed || timer || sessionStorage.getItem(SESSION_KEY) === '1') return;
+        var remaining = Math.max(0, TRIGGER_MS - elapsed);
+        timerStartedAt = Date.now();
+        timer = setTimeout(function () {
+          timer = null;
+          open();
+        }, remaining);
+      }
+      function pauseTimer() {
+        if (!timer) return;
+        elapsed += Date.now() - timerStartedAt;
+        clearTimeout(timer);
+        timer = null;
+      }
+
+      function open() {
+        if (modal.hidden === false) return;
+        armed = false;
+        prevFocus = document.activeElement;
+        iframe.src = YT_EMBED;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        sessionStorage.setItem(SESSION_KEY, '1');
+        setTimeout(function () { closeBtn && closeBtn.focus(); }, 0);
+        document.addEventListener('keydown', onKey);
+      }
+      function close() {
+        modal.hidden = true;
+        iframe.src = '';
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKey);
+        if (prevFocus && prevFocus.focus) prevFocus.focus();
+      }
+      function onKey(e) {
+        if (e.key === 'Escape') { e.preventDefault(); close(); }
+      }
+
+      closeBtn && closeBtn.addEventListener('click', close);
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) close();   // only outside the inner figure
+      });
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) pauseTimer();
+        else startTimer();
+      });
+
+      startTimer();
+    })();
+  </script>
+
   <script src="carousel.js" defer></script>
-  <script src="email-actions.js?v=202606050332" defer></script>
+  <script src="email-actions.js?v=202606091006" defer></script>
 </body>
 </html>
