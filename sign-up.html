@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202606091006" />
-  <link rel="stylesheet" href="sign-up.css?v=202606091006" />
+  <link rel="stylesheet" href="styles.css?v=202606091129" />
+  <link rel="stylesheet" href="sign-up.css?v=202606091129" />
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/logo-256.png" />
 </head>
@@ -50,15 +50,15 @@
   <header class="su-hero">
     <div class="container">
       <span class="eyebrow">Volunteer Registration</span>
-      <h1>Join Saturday's Cleanup.</h1>
+      <h1>Join the Arts Center Cleanup.</h1>
       <p class="su-lede">
         Three hours, one station, real impact. Reserve your spot below and we'll send the meeting
-        point, the waiver, and a Saturday-morning text the day before.
+        point, the waiver, and a morning text before each session.
       </p>
       <div class="su-meta">
         <div><span>Session</span><strong>Arts Center Station</strong></div>
-        <div><span>Date</span><strong>Saturday, June 6, 2026</strong></div>
-        <div><span>Time</span><strong>8:00 AM – 12:00 PM</strong></div>
+        <div><span>Dates</span><strong>June 12–14, 2026</strong></div>
+        <div><span>Time</span><strong>8:00 AM – 12:00 PM daily</strong></div>
         <div><span>Cost</span><strong>Free · Breakfast included</strong></div>
       </div>
     </div>
@@ -103,10 +103,10 @@
             <legend>Session</legend>
             <div class="su-radio-group">
               <label class="su-radio">
-                <input type="radio" name="session" value="2026-06-06-arts-center" checked />
+                <input type="radio" name="session" value="arts-center-june-12-14-2026" checked />
                 <span class="su-radio-card">
-                  <strong>Arts Center · June 6</strong>
-                  <small>8:00 AM – 12:00 PM</small>
+                  <strong>Arts Center · June 12–14</strong>
+                  <small>8:00 AM – 12:00 PM daily</small>
                 </span>
               </label>
               <label class="su-radio">
@@ -333,7 +333,7 @@
       <h2>Thanks — we've got your details.</h2>
       <p>
         You'll get a confirmation email shortly with the meeting point, the volunteer waiver,
-        and what to expect on the morning. A short Saturday-morning text goes out the day before.
+        and what to expect on the day. A short morning text goes out before each session.
         See you at Arts Center.
       </p>
       <p class="su-success-note">
@@ -434,7 +434,7 @@
       // submissions are actually flowing — no emails for 24h = check this.
       // ─────────────────────────────────────────────────────────────────────
       var SESSION_LABELS = {
-        '2026-06-06-arts-center': 'Arts Center · June 6, 2026 · 8 AM',
+        'arts-center-june-12-14-2026': 'Arts Center · June 12–14, 2026',
         'future-session':         'Notify me of future sessions'
       };
       var AGE_LABELS = {
@@ -534,6 +534,6 @@
     })();
   </script>
 
-  <script src="email-actions.js?v=202606091006" defer></script>
+  <script src="email-actions.js?v=202606091129" defer></script>
 </body>
 </html>

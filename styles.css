@@ -1099,11 +1099,17 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
-/* ---------- documentary modal (auto-opens 60s after landing) ---------- */
+/* ---------- documentary modal (auto-opens 10s after landing) ---------- */
+/* Modal sits BELOW the sticky nav so the logo + menu stay on display
+   above the playing video. JS measures the nav height on open and sets
+   --kca-nav-height on the document element; CSS reads it here. */
 .doc-modal {
   position: fixed;
-  inset: 0;
-  z-index: 9999;
+  top: var(--kca-nav-height, 100px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 49;                /* below the nav (z-index 50) — defense in depth */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1185,9 +1191,9 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 
 .doc-modal__close {
   position: fixed;
-  top: 20px;
+  top: calc(var(--kca-nav-height, 100px) + 16px);
   right: 20px;
-  z-index: 10;
+  z-index: 50;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -1210,7 +1216,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 }
 
 @media (max-width: 640px) {
-  .doc-modal__close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 1.4rem; }
+  .doc-modal__close { top: calc(var(--kca-nav-height, 90px) + 8px); right: 12px; width: 40px; height: 40px; font-size: 1.4rem; }
   .doc-modal__title { font-size: 1.25rem; }
   .doc-modal__lede  { font-size: 0.92rem; }
 }

@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202606091006" />
+  <link rel="stylesheet" href="styles.css?v=202606091129" />
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/logo-256.png" />
 </head>
@@ -54,7 +54,7 @@
   <!--
     Image placeholders below are stock Unsplash photos of transit / urban scenes.
     Replace each <img src="..."> with a real MARTA station photo after Session 1
-    (Saturday, June 6, 2026). Keep the data-static-rotation attribute on each card.
+    (June 12–14, 2026). Keep the data-static-rotation attribute on each card.
   -->
   <header class="hero">
     <!-- ============ HERO VECTOR BACKDROP ============ -->
@@ -190,7 +190,7 @@
       </p>
       <div class="hero-actions">
         <a href="sign-up.html" class="btn-liquid">
-          <span>Join Saturday's cleanup</span>
+          <span>Join the June cleanup</span>
           <span class="arrow" aria-hidden="true">→</span>
         </a>
         <a href="get-involved.html#donate" class="btn-liquid is-accent">
@@ -199,7 +199,7 @@
       </div>
       <div class="next-session">
         <span class="pulse" aria-hidden="true"></span>
-        <span>Next session: <strong>Arts Center Station · Saturday, June 6 · 8:00 AM</strong></span>
+        <span>Next session: <strong>Arts Center Station · June 12–14 · 8:00 AM daily</strong></span>
       </div>
     </div>
   </header>
@@ -542,7 +542,7 @@
       var YT_EMBED = 'https://www.youtube.com/embed/' + YT_VIDEO_ID +
         '?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1';
 
-      var TRIGGER_MS = 60 * 1000;   // 60 seconds of visible time
+      var TRIGGER_MS = 10 * 1000;   // 10 seconds of visible time
       var elapsed = 0;
       var timer = null;
       var timerStartedAt = 0;
@@ -565,22 +565,31 @@
         timer = null;
       }
 
+      function measureNav() {
+        var nav = document.querySelector('.nav');
+        var h = (nav && nav.offsetHeight) ? nav.offsetHeight : 100;
+        document.documentElement.style.setProperty('--kca-nav-height', h + 'px');
+      }
+
       function open() {
         if (modal.hidden === false) return;
         armed = false;
         prevFocus = document.activeElement;
+        measureNav();
         iframe.src = YT_EMBED;
         modal.hidden = false;
         document.body.style.overflow = 'hidden';
         sessionStorage.setItem(SESSION_KEY, '1');
         setTimeout(function () { closeBtn && closeBtn.focus(); }, 0);
         document.addEventListener('keydown', onKey);
+        window.addEventListener('resize', measureNav);
       }
       function close() {
         modal.hidden = true;
         iframe.src = '';
         document.body.style.overflow = '';
         document.removeEventListener('keydown', onKey);
+        window.removeEventListener('resize', measureNav);
         if (prevFocus && prevFocus.focus) prevFocus.focus();
       }
       function onKey(e) {
@@ -602,6 +611,6 @@
   </script>
 
   <script src="carousel.js" defer></script>
-  <script src="email-actions.js?v=202606091006" defer></script>
+  <script src="email-actions.js?v=202606091129" defer></script>
 </body>
 </html>
