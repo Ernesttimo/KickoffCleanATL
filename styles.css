@@ -1189,6 +1189,33 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   font-weight: 500;
 }
 
+.doc-modal__ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.35rem;
+  padding: 0.55rem 1.1rem;
+  background: rgba(255, 196, 46, 0.12);
+  border: 1px solid rgba(255, 196, 46, 0.45);
+  border-radius: 999px;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, color 0.15s ease;
+}
+.doc-modal__ig svg { color: var(--gold); flex-shrink: 0; }
+.doc-modal__ig:hover,
+.doc-modal__ig:focus-visible {
+  background: rgba(255, 196, 46, 0.22);
+  border-color: rgba(255, 196, 46, 0.75);
+  color: #FFE082;
+  transform: translateY(-1px);
+  outline: none;
+}
+.doc-modal__ig:hover svg, .doc-modal__ig:focus-visible svg { color: #FFE082; }
+.doc-modal__ig:active { transform: translateY(0); }
+
 .doc-modal__close {
   position: fixed;
   top: calc(var(--kca-nav-height, 100px) + 16px);

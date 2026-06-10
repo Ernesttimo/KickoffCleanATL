@@ -516,3 +516,37 @@ body { background: #0E2E68; }
   font-size: 1.05rem;
   line-height: 1.6;
 }
+
+/* ---------- post-signup IG follow CTA ---------- */
+.su-success-ig-lede {
+  margin: 2.5rem auto 1rem !important;
+  font-size: 0.95rem !important;
+  color: rgba(250, 247, 242, 0.7) !important;
+  max-width: 48ch;
+}
+.su-success-ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.6rem;
+  background: rgba(255, 196, 46, 0.14);
+  border: 1px solid rgba(255, 196, 46, 0.55);
+  border-radius: 999px;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.005em;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, color 0.15s ease;
+}
+.su-success-ig svg { color: var(--gold); flex-shrink: 0; }
+.su-success-ig:hover,
+.su-success-ig:focus-visible {
+  background: rgba(255, 196, 46, 0.24);
+  border-color: rgba(255, 196, 46, 0.85);
+  color: #FFE082;
+  transform: translateY(-1px);
+  outline: none;
+}
+.su-success-ig:hover svg, .su-success-ig:focus-visible svg { color: #FFE082; }
+.su-success-ig:active { transform: translateY(0); }
